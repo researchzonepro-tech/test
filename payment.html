@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h2 {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        select:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .pay-button {
+            background: #ff9f43;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .pay-button:hover {
+            background: #ff6f00;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Payment</h2>
+        <p>Account Size: <span id="accountSize"></span></p>
+        <p>Price: $<span id="price"></span></p>
+        
+        <label for="crypto">Select Blockchain Network:</label>
+        <select id="crypto">
+            <option value="trc20">TRC20 (USDT)</option>
+            <option value="ton">TON</option>
+            <option value="bsc">BSC (Binance Smart Chain)</option>
+        </select>
+        
+        <button class="pay-button" onclick="processPayment()">Pay with Crypto</button>
+    </div>
+
+    <script>
+        document.getElementById("accountSize").innerText = localStorage.getItem("selectedAccountSize") || "Not Selected";
+        document.getElementById("price").innerText = localStorage.getItem("selectedPrice") || "0";
+        
+        function processPayment() {
+            let blockchain = document.getElementById("crypto").value;
+            let price = localStorage.getItem("selectedPrice") || "0";
+            
+            localStorage.setItem("selectedBlockchain", blockchain);
+            
+            if (blockchain === "trc20") {
+                localStorage.setItem("cryptoAddress", "TMBMpUhsqjaAjcQk4xgY8K7LuZzNHxdQD2");
+            } else if (blockchain === "ton") {
+                localStorage.setItem("cryptoAddress", "UQCURs5E1ev1p7rqBYLww0qGG5_gJ82FZHs-M5XNjZw_Jkq3");
+            } else if (blockchain === "bsc") {
+                localStorage.setItem("cryptoAddress", "0xYourNewBSCAddressHere");  // Replace with your actual BSC address
+            }
+            
+            window.location.href = "crypto_payment.html";
+        }
+    </script>
+</body>
+</html>
