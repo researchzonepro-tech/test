@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BlackArrow Trading Profirm</title>
+  <title>Nairafunded</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -221,7 +221,7 @@
   <header class="header">
     <div class="logo">
       <img src="logo.jpg" alt="BlackArrow Logo">
-      <span class="easy">black</span><span class="funded">arrow</span>
+      <span class="easy">Naira</span><span class="funded">funded</span>
     </div>
   </header>
 
@@ -231,7 +231,7 @@
     </div>
 
     <h2 style="margin-bottom: 10px;">Easiest Forex Prop Firm To Get Funded</h2>
-    <p class="description">Unlock the potential of your financial journey with BlackArrow. Take control and grow with funding solutions tailored to your success.</p>
+    <p class="description">Unlock the potential of your financial journey with Nairafunded. Take control and grow with funding solutions tailored to your success.</p>
     <div class="animated-border">
       <p class="promo-text">25% Off Using Promo Code</p>
     </div>
@@ -242,9 +242,10 @@
     </section>
 
     <div class="section">
-      <h2 style="text-align: center;">Why Choose BlackArrow?</h2>
+      <h2 style="text-align: center;">Why Choose Nairafunded?</h2>
       <p style="text-align: center; margin-bottom: 20px;">
-        We empower traders worldwide with capital access, advanced platforms, and full support. Grow with us and keep up to 90% of your profits.
+        W
+        If You Sabi Trade We Sabi Pay. Grow with us and keep up to 95% of your profits.
       </p>
       <div class="overview">
         <div class="card">
@@ -257,13 +258,13 @@
         </div>
         <div class="card">
           <h3>Fast Payouts</h3>
-          <p>Get your first payout in just 7 days.</p>
+          <p>Get your first payout in just 24H.</p>
         </div>
       </div>
     </div>
 
     <div class="invite-banner">
-      <p>Invite 5 people and get a FREE 2k Account!</p>
+      <p>Invite 5 people and get a FREE ₦50k Account!</p>
       <button class="invite-btn" id="copyInviteBtn" onclick="copyInviteLink()">Copy Invite Link</button>
     </div>
   </main>
@@ -316,11 +317,11 @@
 
     // Create Plan Cards Dynamically
     const plans = [
-      { name: "2K Plan", price: 10 },
-      { name: "5K Plan", price: 19 },
-      { name: "10K Plan", price: 35 },
-      { name: "50K Plan", price: 155 },
-      { name: "100K Plan", price: 300 }
+      { name: "50K Plan", price: 5000 },
+      { name: "100K Plan", price: 8000 },
+      { name: "200K Plan", price: 12000 },
+      { name: "500K Plan", price: 28000 },
+      { name: "1M Plan", price: 50000 }
     ];
 
     const planContainer = document.getElementById("planCards");
@@ -334,15 +335,15 @@
       card.style.textAlign = "center";
       card.style.boxShadow = "0 0 20px rgba(255,255,255,0.05)";
       card.innerHTML = `
-        <h3 style="font-size: 20px; color: #fff;">${plan.name}</h3>
+        <h3 style="font-size: 20px; color: #fff;">₦{plan.name}</h3>
         <p style="font-size: 24px; font-weight: bold; margin: 10px 0; color: #ff4b2b;">$${plan.price}</p>
         <ul style="list-style: none; padding: 0; margin: 15px 0; font-size: 14px; color: #ccc;">
           <li>6% Profit Target</li>
-          <li>6% Daily Drawdown</li>
+          <li>10% Daily Drawdown</li>
           <li>12% Total Maximum Drawdown</li>
           <li>4 Min Trading Days</li>
           <li>First Payout After 7 Days</li>
-          <li>90% Profit Share</li>
+          <li>95% Profit Share</li>
         </ul>
         <button class="challenge-btn" onclick="redirectToCheckout('${plan.name}', ${plan.price})">Start Now</button>
       `;
