@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+hi<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -159,8 +159,8 @@
     const price = params.get('price') || '0';
 
     // Display plan data
-    document.getElementById('planTitle').textContent = `Selected Plan: ${plan}`;
-    document.getElementById('planPrice').textContent = `Price: $${price}`;
+    document.getElementById("price").textContent =
+  "₦" + Number(price).toLocaleString("en-NG");
 
     // Initialize international phone input
     const phoneInput = document.querySelector("#phone");
