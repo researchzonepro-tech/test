@@ -1,17 +1,21 @@
-up<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nairafunded</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --primary: #1e1e2f;
-      --accent: #ff4b2b;
-      --secondary: #2a2a40;
-      --text-light: #d3d3d3;
-      --highlight: #ffdd57;
+      --primary: #080d09;
+      --accent: #39FF14;
+      --dark-green: #008F11;
+      --secondary: #111a13;
+      --text-light: #e5e5e5;
+      --highlight: #39FF14;
+      --white: #ffffff;
     }
 
     * {
@@ -28,7 +32,7 @@ up<!DOCTYPE html>
     }
 
     .header {
-      background: black;
+      background: #000;
       padding: 15px 30px;
       position: fixed;
       width: 100%;
@@ -38,7 +42,8 @@ up<!DOCTYPE html>
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      box-shadow: 0 2px 15px rgba(57,255,20,0.12);
+      border-bottom: 1px solid rgba(57,255,20,0.15);
     }
 
     .logo {
@@ -51,11 +56,12 @@ up<!DOCTYPE html>
       height: 50px;
       border-radius: 50%;
       margin-right: 10px;
+      object-fit: cover;
     }
 
     .logo span {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .easy {
@@ -63,9 +69,8 @@ up<!DOCTYPE html>
     }
 
     .funded {
-      color: white;
+      color: var(--accent);
       margin-left: 1px;
-      opacity: 0.7;
     }
 
     .container {
@@ -75,20 +80,21 @@ up<!DOCTYPE html>
     }
 
     .top-banner {
-      background: var(--highlight);
+      background: var(--accent);
       padding: 20px;
       text-align: center;
       font-size: 18px;
       font-weight: bold;
-      color: #1e1e2f;
+      color: #000;
       border-radius: 10px;
       margin-bottom: 30px;
+      box-shadow: 0 0 18px rgba(57,255,20,0.2);
     }
 
     .welcome-text {
       font-size: 32px;
       font-weight: bold;
-      color: #b6e77e;
+      color: var(--accent);
       margin-bottom: 10px;
     }
 
@@ -101,13 +107,14 @@ up<!DOCTYPE html>
     .animated-border {
       width: 300px;
       height: 60px;
-      border: 2px solid #ccc;
+      border: 2px solid var(--dark-green);
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(57,255,20,0.05);
       margin-bottom: 30px;
+      border-radius: 5px;
     }
 
     .animated-border::before {
@@ -117,7 +124,7 @@ up<!DOCTYPE html>
       left: 0;
       width: 100%;
       height: 100%;
-      border: 2px solid white;
+      border: 2px solid var(--accent);
       animation: trace-border 5s infinite;
     }
 
@@ -140,6 +147,7 @@ up<!DOCTYPE html>
       padding: 30px;
       border-radius: 12px;
       margin-top: 40px;
+      border: 1px solid rgba(57,255,20,0.12);
     }
 
     .challenge-btn {
@@ -147,8 +155,8 @@ up<!DOCTYPE html>
       padding: 14px 28px;
       font-size: 16px;
       font-weight: bold;
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
+      background: linear-gradient(45deg, var(--dark-green), var(--accent));
+      color: #000;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -158,6 +166,7 @@ up<!DOCTYPE html>
 
     .challenge-btn:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(57,255,20,0.35);
     }
 
     .overview {
@@ -168,15 +177,16 @@ up<!DOCTYPE html>
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.04);
       padding: 20px;
       border-radius: 10px;
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border: 1px solid rgba(57,255,20,0.12);
     }
 
     .card h3 {
-      color: var(--highlight);
+      color: var(--accent);
       font-size: 18px;
       margin-bottom: 10px;
     }
@@ -189,13 +199,14 @@ up<!DOCTYPE html>
     }
 
     .invite-banner {
-      background: #1a1a1a;
+      background: #111a13;
       padding: 20px;
       text-align: center;
       font-size: 18px;
       color: #fff;
       border-radius: 10px;
       margin-top: 30px;
+      border: 1px solid rgba(57,255,20,0.2);
     }
 
     .invite-btn {
@@ -203,8 +214,8 @@ up<!DOCTYPE html>
       padding: 12px 24px;
       font-size: 16px;
       font-weight: bold;
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
+      background: linear-gradient(45deg, var(--dark-green), var(--accent));
+      color: #000;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -214,94 +225,166 @@ up<!DOCTYPE html>
 
     .invite-btn:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(57,255,20,0.35);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 12px 18px;
+      }
+
+      .logo span {
+        font-size: 21px;
+      }
+
+      .container {
+        margin-top: 120px;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .animated-border {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header class="header">
     <div class="logo">
-      <img src="Logo.png" alt="BlackArrow Logo">
-      <span class="easy">Naira</span><span class="funded">funded</span>
+      <img src="Logo.png" alt="Nairafunded Logo">
+      <span class="easy">Naira</span>
+      <span class="funded">funded</span>
     </div>
   </header>
 
   <main class="container">
+
     <div class="top-banner">
       <p>Invite 5 people and get a ₦50K Account!</p>
     </div>
 
-    <h2 style="margin-bottom: 10px;">Easiest Forex Prop Firm To Get Funded</h2>
-    <p class="description">Unlock the potential of your financial journey with Nairafunded. Take control and grow with funding solutions tailored to your success.</p>
+    <h2 style="margin-bottom: 10px; color: #39FF14;">
+      Easiest Forex Prop Firm To Get Funded
+    </h2>
+
+    <p class="description">
+      Unlock the potential of your financial journey with Nairafunded.
+      Take control and grow with funding solutions tailored to your success.
+    </p>
+
     <div class="animated-border">
       <p class="promo-text">25% Off Using Promo Code</p>
     </div>
 
-    <section style="padding: 60px 20px; background: #0e0e0e; color: #fff; font-family: 'Poppins', sans-serif;">
-      <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px; color: #ffdd57;">Choose Your Challenge</h2>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; margin: auto;" id="planCards"></div>
+    <section style="padding: 60px 20px; background: #080d09; color: #fff; font-family: 'Poppins', sans-serif; border-radius: 12px;">
+
+      <h2 style="text-align: center; font-size: 32px; margin-bottom: 40px; color: #39FF14;">
+        Choose Your Challenge
+      </h2>
+
+      <div
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; margin: auto;"
+        id="planCards">
+      </div>
+
     </section>
 
     <div class="section">
-      <h2 style="text-align: center;">Why Choose Nairafunded?</h2>
+
+      <h2 style="text-align: center; color: #39FF14;">
+        Why Choose Nairafunded?
+      </h2>
+
       <p style="text-align: center; margin-bottom: 20px;">
         If You Sabi Trade We Sabi Pay. Grow with us and keep up to 95% of your profits.
       </p>
+
       <div class="overview">
+
         <div class="card">
           <h3>25% Off Promo</h3>
           <p>Exclusive limited-time offer.</p>
         </div>
+
         <div class="card">
           <h3>Low Drawdowns</h3>
           <p>10% Daily Drawdown and 15% Total Maximum Drawdown</p>
         </div>
+
         <div class="card">
           <h3>Fast Payouts</h3>
           <p>Get your first payout in just 24H.</p>
         </div>
+
       </div>
     </div>
 
     <div class="invite-banner">
       <p>Invite 5 people and get a FREE ₦50k Account!</p>
-      <button class="invite-btn" id="copyInviteBtn" onclick="copyInviteLink()">Copy Invite Link</button>
+      <button class="invite-btn" id="copyInviteBtn" onclick="copyInviteLink()">
+        Copy Invite Link
+      </button>
     </div>
+
   </main>
 
   <footer style="text-align: center; padding: 20px 0; font-family: 'Poppins', sans-serif; font-size: 14px; color: #ccc;">
+
     <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 10px;">
-      <a href="https://www.facebook.com/blackarrow.trading" target="_blank">
+
+      <a href="https://www.facebook.com/blackarrow.trading" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 28px; height: 28px;">
       </a>
-      <a href="https://www.instagram.com/blackarrow.pt?igsh=NmR2cHZrcTV4aWhm" target="_blank">
+
+      <a href="https://www.instagram.com/blackarrow.pt?igsh=NmR2cHZrcTV4aWhm" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" style="width: 28px; height: 28px;">
       </a>
-      <a href="https://x.com/blackarrow_en" target="_blank">
+
+      <a href="https://x.com/blackarrow_en" target="_blank" rel="noopener noreferrer">
         <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" alt="X" style="width: 28px; height: 28px;">
       </a>
+
     </div>
+
     <div>
       Contact us:
-      <a href="mailto:blackarrowprofirm@gmail.com" style="color: #ffdd57; text-decoration: none;">
+      <a href="mailto:blackarrowprofirm@gmail.com" style="color: #39FF14; text-decoration: none;">
         support@blackarrowprofirm.com
       </a>
     </div>
-    <p>BlackArrow © 2020 | All Rights Reserved</p>
+
+    <p>Nairafunded © 2026 | All Rights Reserved</p>
+
   </footer>
 
   <script>
+
     // Copy Invite Link
     function copyInviteLink() {
       const inviteLink = "https://blackarrowprofirm.com/invite?code=FREE₦50k";
+
       const dummyInput = document.createElement("input");
       document.body.appendChild(dummyInput);
+
       dummyInput.value = inviteLink;
       dummyInput.select();
+
       document.execCommand("copy");
       document.body.removeChild(dummyInput);
 
       const button = document.getElementById("copyInviteBtn");
+
       button.textContent = "Copied!";
+
       setTimeout(() => {
         button.textContent = "Copy Invite Link";
       }, 2000);
@@ -311,7 +394,9 @@ up<!DOCTYPE html>
     function redirectToCheckout(planName, planPrice) {
       const encodedName = encodeURIComponent(planName);
       const encodedPrice = encodeURIComponent(planPrice);
-      window.location.href = `checkout.html?plan=${encodedName}&price=${encodedPrice}`;
+
+      window.location.href =
+        `checkout.html?plan=${encodedName}&price=${encodedPrice}`;
     }
 
     // Create Plan Cards Dynamically
@@ -325,42 +410,52 @@ up<!DOCTYPE html>
 
     const planContainer = document.getElementById("planCards");
 
+    plans.forEach(plan => {
 
-plans.forEach(plan => {
-  const card = document.createElement("div");
-  card.style.background = "#1a1a1a";
-  card.style.padding = "30px 20px";
-  card.style.borderRadius = "12px";
-  card.style.width = "300px";
-  card.style.textAlign = "center";
-  card.style.boxShadow = "0 0 20px rgba(255,255,255,0.05)";
+      const card = document.createElement("div");
 
-  card.innerHTML = `
-    <h3 style="font-size: 20px; color: #fff;">${plan.name}</h3>
+      card.style.background = "#111a13";
+      card.style.padding = "30px 20px";
+      card.style.borderRadius = "12px";
+      card.style.width = "300px";
+      card.style.textAlign = "center";
+      card.style.boxShadow = "0 0 20px rgba(57,255,20,0.08)";
+      card.style.border = "1px solid rgba(57,255,20,0.2)";
 
-    <p style="font-size: 24px; font-weight: bold; margin: 10px 0; color: #ff4b2b;">
-      ₦${plan.price.toLocaleString("en-NG")}
-    </p>
+      card.innerHTML = `
 
-    <ul style="list-style: none; padding: 0; margin: 15px 0; font-size: 14px; color: #ccc;">
-      <li>6% Profit Target</li>
-      <li>10% Daily Drawdown</li>
-      <li>12% Total Maximum Drawdown</li>
-      <li>4 Min Trading Days</li>
-      <li>First Payout After 7 Days</li>
-      <li>95% Profit Share</li>
-    </ul>
+        <h3 style="font-size: 20px; color: #fff;">
+          ${plan.name}
+        </h3>
 
-    <button class="challenge-btn"
-      onclick="redirectToCheckout('${plan.name}', ${plan.price})">
-      Start Now
-    </button>
-  `;
+        <p style="font-size: 24px; font-weight: bold; margin: 10px 0; color: #39FF14;">
+          ₦${plan.price.toLocaleString("en-NG")}
+        </p>
 
-  planContainer.appendChild(card);
-});
-    
+        <ul style="list-style: none; padding: 0; margin: 15px 0; font-size: 14px; color: #ccc;">
+
+          <li>6% Profit Target</li>
+          <li>10% Daily Drawdown</li>
+          <li>12% Total Maximum Drawdown</li>
+          <li>4 Min Trading Days</li>
+          <li>First Payout After 7 Days</li>
+          <li>95% Profit Share</li>
+
+        </ul>
+
+        <button class="challenge-btn"
+          onclick="redirectToCheckout('${plan.name}', ${plan.price})">
+          Start Now
+        </button>
+
+      `;
+
+      planContainer.appendChild(card);
+
+    });
 
   </script>
+
 </body>
-</html>
+  </html>
+  
