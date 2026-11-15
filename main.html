@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+up<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -325,29 +325,41 @@
 
     const planContainer = document.getElementById("planCards");
 
-    plans.forEach(plan => {
-      const card = document.createElement("div");
-      card.style.background = "#1a1a1a";
-      card.style.padding = "30px 20px";
-      card.style.borderRadius = "12px";
-      card.style.width = "300px";
-      card.style.textAlign = "center";
-      card.style.boxShadow = "0 0 20px rgba(255,255,255,0.05)";
-      card.innerHTML = `
-        <h3 style="font-size: 20px; color: #fff;">₦{plan.name}</h3>
-        <p style="font-size: 24px; font-weight: bold; margin: 10px 0; color: #ff4b2b;">₦{plan.price}</p>
-        <ul style="list-style: none; padding: 0; margin: 15px 0; font-size: 14px; color: #ccc;">
-          <li>6% Profit Target</li>
-          <li>10% Daily Drawdown</li>
-          <li>12% Total Maximum Drawdown</li>
-          <li>4 Min Trading Days</li>
-          <li>First Payout After 7 Days</li>
-          <li>95% Profit Share</li>
-        </ul>
-        <button class="challenge-btn" onclick="redirectToCheckout('${plan.name}', ${plan.price})">Start Now</button>
-      `;
-      planContainer.appendChild(card);
-    });
+    
+plans.forEach(plan => {
+  const card = document.createElement("div");
+  card.style.background = "#1a1a1a";
+  card.style.padding = "30px 20px";
+  card.style.borderRadius = "12px";
+  card.style.width = "300px";
+  card.style.textAlign = "center";
+  card.style.boxShadow = "0 0 20px rgba(255,255,255,0.05)";
+
+  card.innerHTML = `
+    <h3 style="font-size: 20px; color: #fff;">${plan.name}</h3>
+
+    <p style="font-size: 24px; font-weight: bold; margin: 10px 0; color: #ff4b2b;">
+      ₦${plan.price.toLocaleString("en-NG")}
+    </p>
+
+    <ul style="list-style: none; padding: 0; margin: 15px 0; font-size: 14px; color: #ccc;">
+      <li>6% Profit Target</li>
+      <li>10% Daily Drawdown</li>
+      <li>12% Total Maximum Drawdown</li>
+      <li>4 Min Trading Days</li>
+      <li>First Payout After 7 Days</li>
+      <li>95% Profit Share</li>
+    </ul>
+
+    <button class="challenge-btn"
+      onclick="redirectToCheckout('${plan.name}', ${plan.price})">
+      Start Now
+    </button>
+  `;
+
+  planContainer.appendChild(card);
+});
+    
   </script>
 </body>
 </html>
