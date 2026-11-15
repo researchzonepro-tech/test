@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
   <title>Checkout - Nairafunded</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -15,120 +17,123 @@
       --dark-green: #008F11;
       --white: #ffffff;
       --text: #e5e5e5;
-      --muted: #9ca3af;
       --input-bg: #111a13;
       --border: #263b29;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      min-height: 100%;
     }
 
     body {
+      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
       background: var(--primary);
       color: var(--white);
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
+      padding: 14px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 20px 14px;
+      overflow-x: hidden;
     }
 
     .form-container {
       width: 100%;
-      max-width: 440px;
-      background: #0d150f;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
+      max-width: 420px;
+      background: #101711;
+      padding: 19px;
       margin: auto;
-      box-shadow: 0 0 25px rgba(57, 255, 20, 0.07);
+      border-radius: 13px;
+      border: 1px solid rgba(57,255,20,0.2);
+      box-shadow: 0 0 25px rgba(57,255,20,0.07);
     }
 
-    .logo {
+    .brand {
       text-align: center;
-      margin-bottom: 22px;
-    }
-
-    .logo h1 {
-      font-size: 27px;
+      margin-bottom: 17px;
+      font-size: 25px;
       font-weight: 700;
-      color: var(--white);
+      line-height: 1.3;
     }
 
-    .logo h1 span {
+    .brand .naira {
+      color: white;
+    }
+
+    .brand .funded {
       color: var(--accent);
     }
 
-    .logo p {
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin: 18px 0 12px;
-      color: var(--accent);
+    .brand-subtitle {
+      text-align: center;
+      color: #999;
+      font-size: 9px;
+      letter-spacing: 1.6px;
+      margin-top: -13px;
+      margin-bottom: 16px;
     }
 
     .plan-summary {
-      background: #111d13;
+      background: #111f14;
       border: 1px solid var(--dark-green);
-      padding: 14px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .plan-summary small {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .plan-summary h2 {
-      font-size: 21px;
-      margin-top: 4px;
-    }
-
-    .plan-summary .price {
-      color: var(--accent);
-      font-size: 19px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    label {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 7px;
-      color: var(--text);
-    }
-
-    input,
-    select {
-      width: 100%;
       padding: 12px;
-      border: 1px solid var(--border);
       border-radius: 9px;
-      background: var(--input-bg);
-      color: var(--white);
-      outline: none;
-      font-family: inherit;
-      font-size: 13px;
+      margin-bottom: 13px;
+      text-align: center;
     }
 
-    input:focus,
-    select:focus {
+    .plan-summary h3 {
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .plan-price {
+      font-size: 23px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .form-label {
+      display: block;
+      color: #ddd;
+      font-size: 11px;
+      margin-top: 7px;
+    }
+
+    input, select {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      height: 42px;
+      padding: 9px 11px;
+      margin: 5px 0 7px;
+      background: var(--input-bg);
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: .2s;
+    }
+
+    input:focus, select:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 7px rgba(57,255,20,.12);
+    }
+
+    input::placeholder {
+      color: #999;
     }
 
     select option {
@@ -136,244 +141,412 @@
       color: white;
     }
 
-    .name-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    /* Fixed Nigerian phone number */
-
+    /* Fixed Nigerian phone code */
     .phone-group {
       display: flex;
-      align-items: stretch;
+      width: 100%;
+      height: 42px;
+      margin: 5px 0 7px;
       border: 1px solid var(--border);
-      border-radius: 9px;
-      overflow: hidden;
+      border-radius: 7px;
       background: var(--input-bg);
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    .phone-group:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 7px rgba(57,255,20,.12);
     }
 
     .phone-prefix {
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       padding: 0 12px;
-      background: #17251a;
+      background: #19291b;
       color: var(--accent);
       font-size: 13px;
       font-weight: 600;
-      white-space: nowrap;
       border-right: 1px solid var(--border);
     }
 
     .phone-group input {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      margin: 0;
+      padding: 9px 10px;
       border: none;
       border-radius: 0;
       background: transparent;
+      box-shadow: none;
     }
 
-    .phone-group:focus-within {
-      border-color: var(--accent);
+    .phone-group input:focus {
+      border: none;
+      box-shadow: none;
     }
 
-    /* Password */
+    .phone-group.error {
+      border-color: #ff4b4b;
+    }
 
-    .password-wrap {
+    .input-group {
       position: relative;
     }
 
-    .password-wrap input {
-      padding-right: 48px;
+    .input-group input {
+      padding-right: 42px;
     }
 
     .toggle-password {
       position: absolute;
-      right: 12px;
+      right: 13px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: var(--muted);
-      font-size: 12px;
-      background: none;
-      border: none;
-      font-family: inherit;
+      color: var(--accent);
+      z-index: 2;
     }
 
-    /* Payment methods */
+    input.error, select.error {
+      border-color: #ff4b4b !important;
+    }
 
-    .payment-options {
+    /* Payment dropdown - same dimensions as original select */
+
+    .payment-dropdown {
+      position: relative;
+      width: 100%;
+      margin: 5px 0 7px;
+    }
+
+    .payment-trigger {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 42px;
+      padding: 0 11px;
+      background: var(--input-bg);
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: left;
+      outline: none;
+      transition: .2s;
+    }
+
+    .payment-trigger:focus,
+    .payment-trigger.open {
+      border-color: var(--accent);
+      box-shadow: 0 0 7px rgba(57,255,20,.12);
+    }
+
+    .payment-trigger.error {
+      border-color: #ff4b4b;
+    }
+
+    .payment-selected {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .payment-selected img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      border-radius: 5px;
+      background: white;
+      padding: 2px;
+    }
+
+    .payment-selected .bank-symbol {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #19291b;
+      color: var(--accent);
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    .payment-arrow {
+      color: var(--accent);
+      font-size: 12px;
+      transition: transform .2s;
+    }
+
+    .payment-trigger.open .payment-arrow {
+      transform: rotate(180deg);
+    }
+
+    .payment-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      width: 100%;
+      background: #111a13;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 20;
+      box-shadow: 0 8px 20px rgba(0,0,0,.4);
+    }
+
+    .payment-menu.show {
+      display: block;
     }
 
     .payment-option {
-      position: relative;
-    }
-
-    .payment-option input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 1px;
-      height: 1px;
-    }
-
-    .payment-card {
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 13px;
-      min-height: 72px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: var(--input-bg);
+      gap: 10px;
+      width: 100%;
+      min-height: 46px;
+      padding: 8px 11px;
+      color: white;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(38,59,41,.7);
+      font-family: inherit;
+      font-size: 12px;
+      text-align: left;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
-    .payment-card:hover {
-      border-color: var(--dark-green);
+    .payment-option:last-child {
+      border-bottom: none;
     }
 
-    .payment-option input:checked + .payment-card {
-      border: 1.5px solid var(--accent);
-      background: rgba(57, 255, 20, 0.07);
-      box-shadow: 0 0 12px rgba(57, 255, 20, 0.08);
+    .payment-option:hover,
+    .payment-option:focus {
+      background: #19291b;
+      outline: none;
     }
 
-    .payment-logo {
-      width: 43px;
-      height: 43px;
-      object-fit: contain;
-      border-radius: 8px;
-      background: white;
-      padding: 5px;
-      flex-shrink: 0;
-    }
-
-    .bank-icon {
-      width: 43px;
-      height: 43px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      background: #17351c;
+    .payment-option.selected {
+      background: rgba(57,255,20,.08);
       color: var(--accent);
-      font-size: 23px;
+    }
+
+    .payment-option img {
+      width: 29px;
+      height: 29px;
+      object-fit: contain;
+      background: white;
+      border-radius: 5px;
+      padding: 3px;
       flex-shrink: 0;
     }
 
-    .payment-info {
-      flex: 1;
-    }
-
-    .payment-info strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .payment-info small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      margin-top: 3px;
-    }
-
-    .radio-indicator {
-      width: 19px;
-      height: 19px;
-      border: 1.5px solid #667267;
-      border-radius: 50%;
-      flex-shrink: 0;
+    .payment-option .bank-symbol {
+      width: 29px;
+      height: 29px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #19291b;
+      color: var(--accent);
+      border-radius: 5px;
+      font-size: 17px;
+      flex-shrink: 0;
     }
 
-    .payment-option input:checked + .payment-card .radio-indicator {
-      border-color: var(--accent);
+    .payment-option .option-check {
+      margin-left: auto;
+      color: var(--accent);
+      display: none;
     }
 
-    .payment-option input:checked + .payment-card .radio-indicator::after {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
+    .payment-option.selected .option-check {
+      display: inline-block;
     }
-
-    .payment-option input:focus-visible + .payment-card {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
-
-    /* Submit */
 
     .submit-btn {
       width: 100%;
+      min-height: 44px;
+      padding: 10px;
+      margin-top: 12px;
+      background: linear-gradient(45deg, var(--dark-green), var(--accent));
+      color: #000;
       border: none;
-      padding: 14px;
-      margin-top: 17px;
-      border-radius: 9px;
-      background: var(--accent);
-      color: #071008;
-      font-family: inherit;
+      border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
+      font-family: inherit;
       cursor: pointer;
-      transition: 0.2s;
+      transition: .2s;
     }
 
     .submit-btn:hover {
-      background: #2ddd0d;
+      box-shadow: 0 0 15px rgba(57,255,20,.25);
     }
 
     .submit-btn:disabled {
-      opacity: 0.6;
+      opacity: .6;
       cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 7px;
+      font-size: 12px;
+    }
+
+    .message.error-message {
+      display: block;
+      background: #4a2020;
+      color: #ffbaba;
     }
 
     .secure-note {
       text-align: center;
-      color: var(--muted);
       font-size: 10px;
-      margin-top: 14px;
+      color: #aaa;
+      margin-top: 11px;
+      line-height: 1.5;
+    }
+
+    .secure-note i {
+      color: var(--accent);
+      margin-right: 5px;
     }
 
     .back-link {
       display: block;
       text-align: center;
+      margin-top: 12px;
       color: var(--accent);
-      font-size: 12px;
-      text-decoration: none;
-      margin-top: 15px;
-    }
-
-    .error-message {
-      display: none;
-      background: #351515;
-      border: 1px solid #8d2929;
-      color: #ffbaba;
-      padding: 11px;
       font-size: 11px;
-      border-radius: 8px;
-      margin-bottom: 13px;
+      text-decoration: none;
     }
 
-    @media (max-width: 360px) {
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Narrow phones */
+    @media (max-width: 380px) {
+      body {
+        padding: 9px;
+      }
+
       .form-container {
-        padding: 16px;
+        padding: 14px;
+        border-radius: 11px;
       }
 
-      .name-row {
-        grid-template-columns: 1fr;
-        gap: 0;
+      .brand {
+        font-size: 22px;
+        margin-bottom: 15px;
       }
 
-      .payment-card {
+      .plan-summary {
         padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .plan-price {
+        font-size: 21px;
+      }
+
+      input, select, .phone-group {
+        height: 40px;
+        font-size: 12px;
+      }
+
+      .phone-group input {
+        height: 100%;
+      }
+
+      .phone-prefix {
+        font-size: 12px;
+        padding: 0 9px;
+      }
+
+      .form-label {
+        font-size: 10px;
+      }
+
+      .payment-trigger {
+        height: 40px;
+        font-size: 12px;
+      }
+    }
+
+    /* Short screens */
+    @media (max-height: 700px) {
+      body {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .form-container {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .brand {
+        font-size: 22px;
+        margin-bottom: 13px;
+      }
+
+      .brand-subtitle {
+        margin-bottom: 12px;
+      }
+
+      .plan-summary {
+        padding: 9px;
+        margin-bottom: 9px;
+      }
+
+      .form-label {
+        margin-top: 5px;
+      }
+
+      input, select, .phone-group {
+        height: 39px;
+        margin-top: 4px;
+        margin-bottom: 5px;
+      }
+
+      .phone-group input {
+        height: 100%;
+        margin: 0;
+      }
+
+      .payment-trigger {
+        height: 39px;
+        margin-top: 4px;
+        margin-bottom: 5px;
+      }
+
+      .submit-btn {
+        margin-top: 9px;
+      }
+
+      .secure-note {
+        margin-top: 8px;
+      }
+
+      .back-link {
+        margin-top: 9px;
       }
     }
   </style>
@@ -381,414 +554,289 @@
 
 <body>
 
-  <main class="form-container">
+<div class="form-container">
 
-    <div class="logo">
-      <h1>NAIRA<span>FUNDED</span></h1>
-      <p>YOUR TRADING JOURNEY STARTS HERE</p>
+  <div class="brand">
+    <span class="naira">Naira</span><span class="funded">funded</span>
+  </div>
+
+  <p class="brand-subtitle">TRADE • GROW • GET FUNDED</p>
+
+  <div class="plan-summary">
+    <h3 id="planTitle">Selected Plan</h3>
+    <p class="plan-price" id="planPrice">Loading price...</p>
+  </div>
+
+  <form id="checkoutForm" novalidate>
+
+    <label class="form-label">First Name</label>
+    <input type="text" name="firstName"
+      placeholder="Enter first name"
+      autocomplete="given-name" required>
+
+    <label class="form-label">Last Name</label>
+    <input type="text" name="lastName"
+      placeholder="Enter last name"
+      autocomplete="family-name" required>
+
+    <label class="form-label">Email Address</label>
+    <input type="email" name="email"
+      placeholder="Enter email address"
+      autocomplete="email" required>
+
+    <label class="form-label">State of Residence</label>
+    <select id="state" name="state" required>
+      <option value="">Select Your State</option>
+      <option value="Abia">Abia</option>
+      <option value="Adamawa">Adamawa</option>
+      <option value="Akwa Ibom">Akwa Ibom</option>
+      <option value="Anambra">Anambra</option>
+      <option value="Bauchi">Bauchi</option>
+      <option value="Bayelsa">Bayelsa</option>
+      <option value="Benue">Benue</option>
+      <option value="Borno">Borno</option>
+      <option value="Cross River">Cross River</option>
+      <option value="Delta">Delta</option>
+      <option value="Ebonyi">Ebonyi</option>
+      <option value="Edo">Edo</option>
+      <option value="Ekiti">Ekiti</option>
+      <option value="Enugu">Enugu</option>
+      <option value="Gombe">Gombe</option>
+      <option value="Imo">Imo</option>
+      <option value="Jigawa">Jigawa</option>
+      <option value="Kaduna">Kaduna</option>
+      <option value="Kano">Kano</option>
+      <option value="Katsina">Katsina</option>
+      <option value="Kebbi">Kebbi</option>
+      <option value="Kogi">Kogi</option>
+      <option value="Kwara">Kwara</option>
+      <option value="Lagos">Lagos</option>
+      <option value="Nasarawa">Nasarawa</option>
+      <option value="Niger">Niger</option>
+      <option value="Ogun">Ogun</option>
+      <option value="Ondo">Ondo</option>
+      <option value="Osun">Osun</option>
+      <option value="Oyo">Oyo</option>
+      <option value="Plateau">Plateau</option>
+      <option value="Rivers">Rivers</option>
+      <option value="Sokoto">Sokoto</option>
+      <option value="Taraba">Taraba</option>
+      <option value="Yobe">Yobe</option>
+      <option value="Zamfara">Zamfara</option>
+      <option value="FCT Abuja">Federal Capital Territory (Abuja)</option>
+    </select>
+
+    <label class="form-label">Phone Number</label>
+    <div class="phone-group" id="phoneGroup">
+      <span class="phone-prefix">🇳🇬 +234</span>
+      <input
+        id="phone"
+        type="tel"
+        name="phone"
+        placeholder="8012345678"
+        inputmode="numeric"
+        autocomplete="tel-national"
+        maxlength="11"
+        required
+      >
     </div>
 
-    <div class="plan-summary">
-      <small>YOUR SELECTED CHALLENGE</small>
-      <h2 id="planName">Loading plan...</h2>
-      <div class="price" id="planPrice">₦0</div>
-    </div>
+    <label class="form-label">Trading Platform</label>
+    <select id="platform" name="platform" required>
+      <option value="">Select Platform</option>
+      <option value="metatrader5">MetaTrader 5</option>
+      <option value="metatrader4">MetaTrader 4</option>
+      <option value="marchtrader">MarchTrader</option>
+    </select>
 
-    <div id="errorMessage" class="error-message" role="alert"></div>
+    <!-- Payment Method Dropdown -->
+    <label class="form-label">Payment Method</label>
 
-    <form id="checkoutForm">
+    <div class="payment-dropdown" id="paymentDropdown">
 
-      <h3 class="section-title">Personal Information</h3>
+      <input type="hidden" id="paymentMethod" name="paymentMethod" value="">
 
-      <div class="name-row">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName"
-            placeholder="First name" autocomplete="given-name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName"
-            placeholder="Last name" autocomplete="family-name" required>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email"
-          placeholder="example@email.com" autocomplete="email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="state">State</label>
-        <select id="state" name="state" required>
-          <option value="">Select your state</option>
-          <option>Abia</option>
-          <option>Adamawa</option>
-          <option>Akwa Ibom</option>
-          <option>Anambra</option>
-          <option>Bauchi</option>
-          <option>Bayelsa</option>
-          <option>Benue</option>
-          <option>Borno</option>
-          <option>Cross River</option>
-          <option>Delta</option>
-          <option>Ebonyi</option>
-          <option>Edo</option>
-          <option>Ekiti</option>
-          <option>Enugu</option>
-          <option>Gombe</option>
-          <option>Imo</option>
-          <option>Jigawa</option>
-          <option>Kaduna</option>
-          <option>Kano</option>
-          <option>Katsina</option>
-          <option>Kebbi</option>
-          <option>Kogi</option>
-          <option>Kwara</option>
-          <option>Lagos</option>
-          <option>Nasarawa</option>
-          <option>Niger</option>
-          <option>Ogun</option>
-          <option>Ondo</option>
-          <option>Osun</option>
-          <option>Oyo</option>
-          <option>Plateau</option>
-          <option>Rivers</option>
-          <option>Sokoto</option>
-          <option>Taraba</option>
-          <option>Yobe</option>
-          <option>Zamfara</option>
-          <option>FCT Abuja</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <div class="phone-group">
-          <span class="phone-prefix">🇳🇬 +234</span>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="8012345678"
-            inputmode="numeric"
-            autocomplete="tel-national"
-            maxlength="11"
-            required
-          >
-        </div>
-      </div>
-
-      <h3 class="section-title">Trading Information</h3>
-
-      <div class="form-group">
-        <label for="platform">Trading Platform</label>
-        <select id="platform" name="platform" required>
-          <option value="">Select trading platform</option>
-          <option value="MetaTrader 5">MetaTrader 5</option>
-          <option value="MetaTrader 4">MetaTrader 4</option>
-          <option value="MatchTrader">MatchTrader</option>
-        </select>
-      </div>
-
-      <h3 class="section-title">Payment Method</h3>
-
-      <div class="payment-options">
-
-        <div class="payment-option">
-          <input
-            type="radio"
-            id="bankTransfer"
-            name="paymentMethod"
-            value="bank_transfer"
-            required
-          >
-          <label class="payment-card" for="bankTransfer">
-            <span class="bank-icon">▤</span>
-            <span class="payment-info">
-              <strong>Bank Transfer</strong>
-              <small>Pay directly from your bank app</small>
-            </span>
-            <span class="radio-indicator"></span>
-          </label>
-        </div>
-
-        <div class="payment-option">
-          <input
-            type="radio"
-            id="moniepoint"
-            name="paymentMethod"
-            value="moniepoint"
-            required
-          >
-          <label class="payment-card" for="moniepoint">
-            <img
-              class="payment-logo"
-              src="https://moniepoint.com/icon.svg"
-              alt="Moniepoint logo"
-            >
-            <span class="payment-info">
-              <strong>Moniepoint</strong>
-              <small>Pay using Moniepoint</small>
-            </span>
-            <span class="radio-indicator"></span>
-          </label>
-        </div>
-
-        <div class="payment-option">
-          <input
-            type="radio"
-            id="opay"
-            name="paymentMethod"
-            value="opay"
-            required
-          >
-          <label class="payment-card" for="opay">
-            <img
-              class="payment-logo"
-              src="https://gstatic.opayweb.com/website-ng/img/opay-logo.684aa98.svg"
-              alt="OPay logo"
-            >
-            <span class="payment-info">
-              <strong>OPay</strong>
-              <small>Pay using OPay</small>
-            </span>
-            <span class="radio-indicator"></span>
-          </label>
-        </div>
-
-      </div>
-
-      <h3 class="section-title">Account Security</h3>
-
-      <div class="form-group">
-        <label for="password">Create Password</label>
-        <div class="password-wrap">
-          <input type="password" id="password" name="password"
-            placeholder="Minimum 8 characters" minlength="8"
-            autocomplete="new-password" required>
-          <button type="button" class="toggle-password"
-            onclick="togglePassword('password', this)">Show</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="retypePassword">Confirm Password</label>
-        <div class="password-wrap">
-          <input type="password" id="retypePassword"
-            name="retypePassword" placeholder="Confirm your password"
-            autocomplete="new-password" required>
-          <button type="button" class="toggle-password"
-            onclick="togglePassword('retypePassword', this)">Show</button>
-        </div>
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">
-        Continue to Payment
+      <button
+        type="button"
+        class="payment-trigger"
+        id="paymentTrigger"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+      >
+        <span class="payment-selected" id="paymentSelected">
+          <span style="color:#999;">Select Payment Method</span>
+        </span>
+        <i class="fa-solid fa-chevron-down payment-arrow"></i>
       </button>
 
-      <p class="secure-note">
-        🔒 Your information is submitted securely.
-      </p>
+      <div class="payment-menu" id="paymentMenu" role="listbox">
 
-    </form>
+        <button
+          type="button"
+          class="payment-option"
+          data-value="bank_transfer"
+          role="option"
+          aria-selected="false"
+        >
+          <span class="bank-symbol">
+            <i class="fa-solid fa-building-columns"></i>
+          </span>
+          <span>Bank Transfer</span>
+          <i class="fa-solid fa-check option-check"></i>
+        </button>
 
-    <a href="main.html" class="back-link">← Back to Homepage</a>
+        <button
+          type="button"
+          class="payment-option"
+          data-value="moniepoint"
+          role="option"
+          aria-selected="false"
+        >
+          <img
+            src="https://moniepoint.com/icon.svg"
+            alt="Moniepoint logo"
+          >
+          <span>Moniepoint</span>
+          <i class="fa-solid fa-check option-check"></i>
+        </button>
 
-  </main>
+        <button
+          type="button"
+          class="payment-option"
+          data-value="opay"
+          role="option"
+          aria-selected="false"
+        >
+          <img
+            src="https://gstatic.opayweb.com/website-ng/img/opay-logo.684aa98.svg"
+            alt="OPay logo"
+          >
+          <span>OPay</span>
+          <i class="fa-solid fa-check option-check"></i>
+        </button>
 
-  <script>
-    const plans = {
-      "50K Plan": 5000,
-      "100K Plan": 8000,
-      "200K Plan": 12000,
-      "500K Plan": 28000,
-      "1M Plan": 50000
-    };
+      </div>
+    </div>
 
-    const params = new URLSearchParams(window.location.search);
-    const selectedPlan = params.get("plan");
-    const selectedPrice = params.get("price");
+    <label class="form-label">Create Password</label>
+    <div class="input-group">
+      <input type="password" name="password" id="password"
+        placeholder="Create password (minimum 8 characters)"
+        minlength="8" autocomplete="new-password" required>
+      <i class="fa-solid fa-eye toggle-password"
+        onclick="togglePassword('password', this)"></i>
+    </div>
 
-    const planName = document.getElementById("planName");
-    const planPrice = document.getElementById("planPrice");
-    const form = document.getElementById("checkoutForm");
-    const errorMessage = document.getElementById("errorMessage");
-    const submitBtn = document.getElementById("submitBtn");
-    const phoneInput = document.getElementById("phone");
+    <label class="form-label">Confirm Password</label>
+    <div class="input-group">
+      <input type="password" name="retypePassword" id="retypePassword"
+        placeholder="Confirm your password"
+        minlength="8" autocomplete="new-password" required>
+      <i class="fa-solid fa-eye toggle-password"
+        onclick="togglePassword('retypePassword', this)"></i>
+    </div>
 
-    const validPlan =
-      Object.prototype.hasOwnProperty.call(plans, selectedPlan) &&
-      Number(selectedPrice) === plans[selectedPlan];
+    <div id="message" class="message"></div>
 
-    if (validPlan) {
-      planName.textContent = selectedPlan;
-      planPrice.textContent =
-        "₦" + plans[selectedPlan].toLocaleString("en-NG");
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Continue to Payment
+    </button>
+
+    <p class="secure-note">
+      <i class="fa-solid fa-lock"></i>
+      Your information should be securely processed.
+    </p>
+
+    <a href="index.html" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Back to Homepage
+    </a>
+
+  </form>
+</div>
+
+<script>
+  // Available plans
+  const plans = {
+    "50K Plan": 5000,
+    "100K Plan": 8000,
+    "200K Plan": 12000,
+    "500K Plan": 28000,
+    "1M Plan": 50000
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get("plan");
+
+  const planTitle = document.getElementById("planTitle");
+  const planPrice = document.getElementById("planPrice");
+  const form = document.getElementById("checkoutForm");
+  const message = document.getElementById("message");
+  const submitBtn = document.getElementById("submitBtn");
+
+  const validPlan = Object.prototype.hasOwnProperty.call(plans, plan);
+
+  if (!validPlan) {
+    planTitle.textContent = "Invalid Plan";
+    planPrice.textContent = "Please select a valid plan.";
+    submitBtn.disabled = true;
+  } else {
+    planTitle.textContent = plan;
+    planPrice.textContent = "₦" + plans[plan].toLocaleString("en-NG");
+  }
+
+  const phoneInput = document.getElementById("phone");
+  const phoneGroup = document.getElementById("phoneGroup");
+
+  // Payment dropdown
+  const paymentDropdown = document.getElementById("paymentDropdown");
+  const paymentTrigger = document.getElementById("paymentTrigger");
+  const paymentMenu = document.getElementById("paymentMenu");
+  const paymentSelected = document.getElementById("paymentSelected");
+  const paymentInput = document.getElementById("paymentMethod");
+  const paymentOptions = document.querySelectorAll(".payment-option");
+
+  const paymentDisplay = {
+    bank_transfer: `
+      <span class="bank-symbol">
+        <i class="fa-solid fa-building-columns"></i>
+      </span>
+      <span>Bank Transfer</span>
+    `,
+    moniepoint: `
+      <img src="https://moniepoint.com/icon.svg" alt="Moniepoint logo">
+      <span>Moniepoint</span>
+    `,
+    opay: `
+      <img src="https://gstatic.opayweb.com/website-ng/img/opay-logo.684aa98.svg" alt="OPay logo">
+      <span>OPay</span>
+    `
+  };
+
+  function closePaymentDropdown() {
+    paymentMenu.classList.remove("show");
+    paymentTrigger.classList.remove("open");
+    paymentTrigger.setAttribute("aria-expanded", "false");
+  }
+
+  paymentTrigger.addEventListener("click", function() {
+    const isOpen = paymentMenu.classList.contains("show");
+
+    if (isOpen) {
+      closePaymentDropdown();
     } else {
-      planName.textContent = "Invalid plan";
-      planPrice.textContent = "₦0";
-      showError("Invalid plan selection. Please return to the homepage and select a valid plan.");
-      submitBtn.disabled = true;
+      paymentMenu.classList.add("show");
+      paymentTrigger.classList.add("open");
+      paymentTrigger.setAttribute("aria-expanded", "true");
     }
+  });
 
-    function showError(message) {
-      errorMessage.textContent = message;
-      errorMessage.style.display = "block";
-      errorMessage.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }
+  paymentOptions.forEach(option => {
+    option.addEventListener("click", function() {
+      const value = this.dataset.value;
 
-    function togglePassword(id, button) {
-      const input = document.getElementById(id);
+      paymentInput.value = value;
+      paymentSelected.innerHTML = paymentDisplay[value];
 
-      if (input.type === "password") {
-        input.type = "text";
-        button.textContent = "Hide";
-      } else {
-        input.type = "password";
-        button.textContent = "Show";
-      }
-    }
-
-    // Accept digits only in Nigerian phone input.
-    phoneInput.addEventListener("input", function () {
-      this.value = this.value.replace(/\D/g, "").slice(0, 11);
-    });
-
-    function getNigerianPhoneNumber() {
-      let number = phoneInput.value.replace(/\D/g, "");
-
-      if (number.startsWith("0")) {
-        number = number.substring(1);
-      }
-
-      if (!/^[789][01]\d{8}$/.test(number)) {
-        return null;
-      }
-
-      return "+234" + number;
-    }
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      errorMessage.style.display = "none";
-
-      if (!validPlan) {
-        showError("Please select a valid plan from the homepage.");
-        return;
-      }
-
-      const fields = form.querySelectorAll(
-        "input:not([type=hidden]):not([type=radio]), select"
-      );
-
-      for (const field of fields) {
-        if (!field.value.trim()) {
-          showError("Please complete all required fields.");
-          field.focus();
-          return;
-        }
-      }
-
-      const email = form.elements.email.value.trim();
-
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (!emailPattern.test(email)) {
-        showError("Please enter a valid email address.");
-        form.elements.email.focus();
-        return;
-      }
-
-      const phoneNumber = getNigerianPhoneNumber();
-
-      if (!phoneNumber) {
-        showError("Enter a valid Nigerian phone number, e.g. 08012345678.");
-        phoneInput.focus();
-        return;
-      }
-
-      const password = form.elements.password.value;
-      const confirmPassword = form.elements.retypePassword.value;
-
-      if (password.length < 8) {
-        showError("Password must contain at least 8 characters.");
-        form.elements.password.focus();
-        return;
-      }
-
-      if (password !== confirmPassword) {
-        showError("Your passwords do not match.");
-        form.elements.retypePassword.focus();
-        return;
-      }
-
-      const selectedPayment = form.querySelector(
-        'input[name="paymentMethod"]:checked'
-      );
-
-      if (!selectedPayment) {
-        showError("Please select a payment method.");
-        return;
-      }
-
-      const customerData = {
-        firstName: form.elements.firstName.value.trim(),
-        lastName: form.elements.lastName.value.trim(),
-        email: email,
-        state: form.elements.state.value,
-        phone: phoneNumber,
-        platform: form.elements.platform.value,
-        paymentMethod: selectedPayment.value,
-        plan: selectedPlan,
-        price: plans[selectedPlan]
-      };
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Processing...";
-
-      try {
-        const response = await fetch("/api/create-checkout", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(customerData)
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            result.message || "Unable to create checkout. Please try again."
-          );
-        }
-
-        if (!result.paymentUrl) {
-          throw new Error("Payment link was not returned by the server.");
-        }
-
-        const paymentUrl = new URL(result.paymentUrl, window.location.origin);
-
-        if (paymentUrl.origin !== window.location.origin) {
-          throw new Error("Invalid payment destination.");
-        }
-
-        window.location.href = paymentUrl.href;
-
-      } catch (error) {
-        showError(error.message || "Something went wrong. Please try again.");
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Continue to Payment";
-      }
-    });
-  </script>
-
-</body>
-  </html>
-  
+      paymentOptions.forEach(item => {
+        item.classList.remove("selected");
+    
