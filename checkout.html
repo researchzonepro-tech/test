@@ -7,8 +7,6 @@
   <title>Checkout - Nairafunded</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -17,123 +15,120 @@
       --dark-green: #008F11;
       --white: #ffffff;
       --text: #e5e5e5;
+      --muted: #9ca3af;
       --input-bg: #111a13;
       --border: #263b29;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      width: 100%;
-      min-height: 100%;
+      box-sizing: border-box;
     }
 
     body {
-      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
       background: var(--primary);
       color: var(--white);
-      font-family: 'Poppins', Arial, sans-serif;
-      padding: 14px;
+      font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      overflow-x: hidden;
+      padding: 20px 14px;
     }
 
     .form-container {
       width: 100%;
-      max-width: 420px;
-      background: #101711;
-      padding: 19px;
+      max-width: 440px;
+      background: #0d150f;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
       margin: auto;
-      border-radius: 13px;
-      border: 1px solid rgba(57,255,20,0.2);
-      box-shadow: 0 0 25px rgba(57,255,20,0.07);
+      box-shadow: 0 0 25px rgba(57, 255, 20, 0.07);
     }
 
-    .brand {
+    .logo {
       text-align: center;
-      margin-bottom: 17px;
-      font-size: 25px;
+      margin-bottom: 22px;
+    }
+
+    .logo h1 {
+      font-size: 27px;
       font-weight: 700;
-      line-height: 1.3;
+      color: var(--white);
     }
 
-    .brand .naira {
-      color: white;
-    }
-
-    .brand .funded {
+    .logo h1 span {
       color: var(--accent);
     }
 
-    .brand-subtitle {
-      text-align: center;
-      color: #999;
-      font-size: 9px;
-      letter-spacing: 1.6px;
-      margin-top: -13px;
-      margin-bottom: 16px;
+    .logo p {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 18px 0 12px;
+      color: var(--accent);
     }
 
     .plan-summary {
-      background: #111f14;
+      background: #111d13;
       border: 1px solid var(--dark-green);
-      padding: 12px;
-      border-radius: 9px;
-      margin-bottom: 13px;
-      text-align: center;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
 
-    .plan-summary h3 {
-      color: var(--accent);
-      margin-bottom: 4px;
-      font-size: 17px;
-    }
-
-    .plan-price {
-      font-size: 23px;
-      font-weight: bold;
-      color: white;
-    }
-
-    .form-label {
-      display: block;
-      color: #ddd;
+    .plan-summary small {
+      color: var(--muted);
       font-size: 11px;
-      margin-top: 7px;
     }
 
-    input, select {
+    .plan-summary h2 {
+      font-size: 21px;
+      margin-top: 4px;
+    }
+
+    .plan-summary .price {
+      color: var(--accent);
+      font-size: 19px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
       display: block;
+      font-size: 12px;
+      margin-bottom: 7px;
+      color: var(--text);
+    }
+
+    input,
+    select {
       width: 100%;
-      min-width: 0;
-      height: 42px;
-      padding: 9px 11px;
-      margin: 5px 0 7px;
-      background: var(--input-bg);
-      color: white;
+      padding: 12px;
       border: 1px solid var(--border);
-      border-radius: 7px;
-      font-size: 13px;
-      font-family: inherit;
+      border-radius: 9px;
+      background: var(--input-bg);
+      color: var(--white);
       outline: none;
-      transition: .2s;
+      font-family: inherit;
+      font-size: 13px;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 7px rgba(57,255,20,.12);
-    }
-
-    input::placeholder {
-      color: #999;
     }
 
     select option {
@@ -141,202 +136,244 @@
       color: white;
     }
 
-    .input-group {
+    .name-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* Fixed Nigerian phone number */
+
+    .phone-group {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      overflow: hidden;
+      background: var(--input-bg);
+    }
+
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      background: #17251a;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-right: 1px solid var(--border);
+    }
+
+    .phone-group input {
+      border: none;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .phone-group:focus-within {
+      border-color: var(--accent);
+    }
+
+    /* Password */
+
+    .password-wrap {
       position: relative;
     }
 
-    .input-group input {
-      padding-right: 42px;
+    .password-wrap input {
+      padding-right: 48px;
     }
 
     .toggle-password {
       position: absolute;
-      right: 13px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: var(--accent);
-      z-index: 2;
+      color: var(--muted);
+      font-size: 12px;
+      background: none;
+      border: none;
+      font-family: inherit;
     }
 
-    input.error, select.error {
-      border-color: #ff4b4b !important;
+    /* Payment methods */
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
+
+    .payment-option {
+      position: relative;
+    }
+
+    .payment-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
+    }
+
+    .payment-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px;
+      min-height: 72px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--input-bg);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .payment-card:hover {
+      border-color: var(--dark-green);
+    }
+
+    .payment-option input:checked + .payment-card {
+      border: 1.5px solid var(--accent);
+      background: rgba(57, 255, 20, 0.07);
+      box-shadow: 0 0 12px rgba(57, 255, 20, 0.08);
+    }
+
+    .payment-logo {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: white;
+      padding: 5px;
+      flex-shrink: 0;
+    }
+
+    .bank-icon {
+      width: 43px;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: #17351c;
+      color: var(--accent);
+      font-size: 23px;
+      flex-shrink: 0;
+    }
+
+    .payment-info {
+      flex: 1;
+    }
+
+    .payment-info strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .payment-info small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    .radio-indicator {
+      width: 19px;
+      height: 19px;
+      border: 1.5px solid #667267;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .payment-option input:checked + .payment-card .radio-indicator {
+      border-color: var(--accent);
+    }
+
+    .payment-option input:checked + .payment-card .radio-indicator::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .payment-option input:focus-visible + .payment-card {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Submit */
 
     .submit-btn {
       width: 100%;
-      min-height: 44px;
-      padding: 10px;
-      margin-top: 12px;
-      background: linear-gradient(45deg, var(--dark-green), var(--accent));
-      color: #000;
       border: none;
-      border-radius: 8px;
+      padding: 14px;
+      margin-top: 17px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #071008;
+      font-family: inherit;
       font-size: 14px;
       font-weight: 700;
-      font-family: inherit;
       cursor: pointer;
-      transition: .2s;
+      transition: 0.2s;
     }
 
     .submit-btn:hover {
-      box-shadow: 0 0 15px rgba(57,255,20,.25);
+      background: #2ddd0d;
     }
 
     .submit-btn:disabled {
-      opacity: .6;
+      opacity: 0.6;
       cursor: not-allowed;
-    }
-
-    .iti {
-      width: 100%;
-      margin: 5px 0 7px;
-    }
-
-    .iti input {
-      width: 100%;
-      height: 42px;
-      margin: 0;
-    }
-
-    .iti__country-list {
-      background: #111a13;
-      color: white;
-      border: 1px solid var(--dark-green);
-      max-width: min(300px, calc(100vw - 40px));
-    }
-
-    .iti__country:hover {
-      background: #203525;
-    }
-
-    .iti__selected-country {
-      background: #111a13;
-    }
-
-    .message {
-      display: none;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 7px;
-      font-size: 12px;
-    }
-
-    .message.error-message {
-      display: block;
-      background: #4a2020;
-      color: #ffbaba;
     }
 
     .secure-note {
       text-align: center;
+      color: var(--muted);
       font-size: 10px;
-      color: #aaa;
-      margin-top: 11px;
-      line-height: 1.5;
-    }
-
-    .secure-note i {
-      color: var(--accent);
-      margin-right: 5px;
+      margin-top: 14px;
     }
 
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 12px;
       color: var(--accent);
-      font-size: 11px;
+      font-size: 12px;
       text-decoration: none;
+      margin-top: 15px;
     }
 
-    .back-link:hover {
-      text-decoration: underline;
+    .error-message {
+      display: none;
+      background: #351515;
+      border: 1px solid #8d2929;
+      color: #ffbaba;
+      padding: 11px;
+      font-size: 11px;
+      border-radius: 8px;
+      margin-bottom: 13px;
     }
 
-    /* Narrow phones */
-    @media (max-width: 380px) {
-      body {
-        padding: 9px;
-      }
-
+    @media (max-width: 360px) {
       .form-container {
-        padding: 14px;
-        border-radius: 11px;
+        padding: 16px;
       }
 
-      .brand {
-        font-size: 22px;
-        margin-bottom: 15px;
+      .name-row {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
 
-      .plan-summary {
+      .payment-card {
         padding: 10px;
-        margin-bottom: 10px;
-      }
-
-      .plan-price {
-        font-size: 21px;
-      }
-
-      input, select, .iti input {
-        height: 40px;
-        font-size: 12px;
-      }
-
-      .form-label {
-        font-size: 10px;
-      }
-    }
-
-    /* Short screens */
-    @media (max-height: 700px) {
-      body {
-        padding-top: 8px;
-        padding-bottom: 8px;
-      }
-
-      .form-container {
-        padding-top: 13px;
-        padding-bottom: 13px;
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-
-      .brand {
-        font-size: 22px;
-        margin-bottom: 13px;
-      }
-
-      .brand-subtitle {
-        margin-bottom: 12px;
-      }
-
-      .plan-summary {
-        padding: 9px;
-        margin-bottom: 9px;
-      }
-
-      .form-label {
-        margin-top: 5px;
-      }
-
-      input, select, .iti input {
-        height: 39px;
-        margin-top: 4px;
-        margin-bottom: 5px;
-      }
-
-      .submit-btn {
-        margin-top: 9px;
-      }
-
-      .secure-note {
-        margin-top: 8px;
-      }
-
-      .back-link {
-        margin-top: 9px;
       }
     }
   </style>
@@ -344,260 +381,414 @@
 
 <body>
 
-<div class="form-container">
+  <main class="form-container">
 
-  <div class="brand">
-    <span class="naira">Naira</span><span class="funded">funded</span>
-  </div>
-
-  <p class="brand-subtitle">TRADE • GROW • GET FUNDED</p>
-
-  <div class="plan-summary">
-    <h3 id="planTitle">Selected Plan</h3>
-    <p class="plan-price" id="planPrice">Loading price...</p>
-  </div>
-
-  <form id="checkoutForm" novalidate>
-
-    <label class="form-label">First Name</label>
-    <input type="text" name="firstName" placeholder="Enter first name" autocomplete="given-name" required>
-
-    <label class="form-label">Last Name</label>
-    <input type="text" name="lastName" placeholder="Enter last name" autocomplete="family-name" required>
-
-    <label class="form-label">Email Address</label>
-    <input type="email" name="email" placeholder="Enter email address" autocomplete="email" required>
-
-    <label class="form-label">Country</label>
-    
-
-    <label class="form-label">Phone Number</label>
-    <input id="phone" type="tel" name="phone" placeholder="Enter phone number" autocomplete="tel" required>
-
-    <label class="form-label">Trading Platform</label>
-    <select id="platform" name="platform" required>
-      <option value="">Select Platform</option>
-      <option value="metatrader5">MetaTrader 5</option>
-      <option value="metatrader4">MetaTrader 4</option>
-      <option value="marchtrader">MarchTrader</option>
-    </select>
-
-    <label class="form-label">Payment Network</label>
-    <select id="blockchainSelect" name="blockchain" required>
-      <option value="">Select Network</option>
-      <option value="bsc">BSC (BEP20)</option>
-      <option value="trc20">TRC20</option>
-      <option value="ethereum">Ethereum (ERC20)</option>
-    </select>
-
-    <label class="form-label">Create Password</label>
-    <div class="input-group">
-      <input type="password" name="password" id="password"
-        placeholder="Create password (minimum 8 characters)"
-        minlength="8" autocomplete="new-password" required>
-      <i class="fa-solid fa-eye toggle-password"
-        onclick="togglePassword('password', this)"></i>
+    <div class="logo">
+      <h1>NAIRA<span>FUNDED</span></h1>
+      <p>YOUR TRADING JOURNEY STARTS HERE</p>
     </div>
 
-    <label class="form-label">Confirm Password</label>
-    <div class="input-group">
-      <input type="password" name="retypePassword" id="retypePassword"
-        placeholder="Confirm your password"
-        minlength="8" autocomplete="new-password" required>
-      <i class="fa-solid fa-eye toggle-password"
-        onclick="togglePassword('retypePassword', this)"></i>
+    <div class="plan-summary">
+      <small>YOUR SELECTED CHALLENGE</small>
+      <h2 id="planName">Loading plan...</h2>
+      <div class="price" id="planPrice">₦0</div>
     </div>
 
-    <div id="message" class="message"></div>
+    <div id="errorMessage" class="error-message" role="alert"></div>
 
-    <button type="submit" class="submit-btn" id="submitBtn">
-      Continue to Crypto Payment
-    </button>
+    <form id="checkoutForm">
 
-    <p class="secure-note">
-      <i class="fa-solid fa-lock"></i>
-      Your information should be securely processed.
-    </p>
+      <h3 class="section-title">Personal Information</h3>
 
-    <a href="main.html" class="back-link">
-      <i class="fa-solid fa-arrow-left"></i> Back to Homepage
-    </a>
+      <div class="name-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName"
+            placeholder="First name" autocomplete="given-name" required>
+        </div>
 
-  </form>
-</div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName"
+            placeholder="Last name" autocomplete="family-name" required>
+        </div>
+      </div>
 
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email"
+          placeholder="example@email.com" autocomplete="email" required>
+      </div>
 
-<script>
-  const plans = {
-    "50K Plan": 5000,
-    "100K Plan": 8000,
-    "200K Plan": 12000,
-    "500K Plan": 28000,
-    "1M Plan": 50000
-  };
+      <div class="form-group">
+        <label for="state">State</label>
+        <select id="state" name="state" required>
+          <option value="">Select your state</option>
+          <option>Abia</option>
+          <option>Adamawa</option>
+          <option>Akwa Ibom</option>
+          <option>Anambra</option>
+          <option>Bauchi</option>
+          <option>Bayelsa</option>
+          <option>Benue</option>
+          <option>Borno</option>
+          <option>Cross River</option>
+          <option>Delta</option>
+          <option>Ebonyi</option>
+          <option>Edo</option>
+          <option>Ekiti</option>
+          <option>Enugu</option>
+          <option>Gombe</option>
+          <option>Imo</option>
+          <option>Jigawa</option>
+          <option>Kaduna</option>
+          <option>Kano</option>
+          <option>Katsina</option>
+          <option>Kebbi</option>
+          <option>Kogi</option>
+          <option>Kwara</option>
+          <option>Lagos</option>
+          <option>Nasarawa</option>
+          <option>Niger</option>
+          <option>Ogun</option>
+          <option>Ondo</option>
+          <option>Osun</option>
+          <option>Oyo</option>
+          <option>Plateau</option>
+          <option>Rivers</option>
+          <option>Sokoto</option>
+          <option>Taraba</option>
+          <option>Yobe</option>
+          <option>Zamfara</option>
+          <option>FCT Abuja</option>
+        </select>
+      </div>
 
-  const params = new URLSearchParams(window.location.search);
-  const plan = params.get("plan");
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <div class="phone-group">
+          <span class="phone-prefix">🇳🇬 +234</span>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="8012345678"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            maxlength="11"
+            required
+          >
+        </div>
+      </div>
 
-  const planTitle = document.getElementById("planTitle");
-  const planPrice = document.getElementById("planPrice");
-  const form = document.getElementById("checkoutForm");
-  const message = document.getElementById("message");
-  const submitBtn = document.getElementById("submitBtn");
+      <h3 class="section-title">Trading Information</h3>
 
-  const validPlan = Object.prototype.hasOwnProperty.call(plans, plan);
+      <div class="form-group">
+        <label for="platform">Trading Platform</label>
+        <select id="platform" name="platform" required>
+          <option value="">Select trading platform</option>
+          <option value="MetaTrader 5">MetaTrader 5</option>
+          <option value="MetaTrader 4">MetaTrader 4</option>
+          <option value="MatchTrader">MatchTrader</option>
+        </select>
+      </div>
 
-  if (!validPlan) {
-    planTitle.textContent = "Invalid Plan";
-    planPrice.textContent = "Please select a valid plan.";
-    submitBtn.disabled = true;
-  } else {
-    planTitle.textContent = plan;
-    planPrice.textContent = "₦" + plans[plan].toLocaleString("en-NG");
-  }
+      <h3 class="section-title">Payment Method</h3>
 
-  const phoneInput = document.getElementById("phone");
-  const countrySelect = document.getElementById("country");
+      <div class="payment-options">
 
-  const iti = window.intlTelInput(phoneInput, {
-    separateDialCode: true,
-    initialCountry: "ng",
-    nationalMode: false,
-    allowDropdown: true,
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
-  });
+        <div class="payment-option">
+          <input
+            type="radio"
+            id="bankTransfer"
+            name="paymentMethod"
+            value="bank_transfer"
+            required
+          >
+          <label class="payment-card" for="bankTransfer">
+            <span class="bank-icon">▤</span>
+            <span class="payment-info">
+              <strong>Bank Transfer</strong>
+              <small>Pay directly from your bank app</small>
+            </span>
+            <span class="radio-indicator"></span>
+          </label>
+        </div>
 
-  countrySelect.addEventListener("change", function() {
-    if (this.value) {
-      iti.setCountry(this.value.toLowerCase());
-    }
-  });
+        <div class="payment-option">
+          <input
+            type="radio"
+            id="moniepoint"
+            name="paymentMethod"
+            value="moniepoint"
+            required
+          >
+          <label class="payment-card" for="moniepoint">
+            <img
+              class="payment-logo"
+              src="https://moniepoint.com/icon.svg"
+              alt="Moniepoint logo"
+            >
+            <span class="payment-info">
+              <strong>Moniepoint</strong>
+              <small>Pay using Moniepoint</small>
+            </span>
+            <span class="radio-indicator"></span>
+          </label>
+        </div>
 
-  form.querySelectorAll("input, select").forEach(field => {
-    field.addEventListener("input", () => {
-      field.classList.remove("error");
-      message.className = "message";
-      message.textContent = "";
-    });
+        <div class="payment-option">
+          <input
+            type="radio"
+            id="opay"
+            name="paymentMethod"
+            value="opay"
+            required
+          >
+          <label class="payment-card" for="opay">
+            <img
+              class="payment-logo"
+              src="https://gstatic.opayweb.com/website-ng/img/opay-logo.684aa98.svg"
+              alt="OPay logo"
+            >
+            <span class="payment-info">
+              <strong>OPay</strong>
+              <small>Pay using OPay</small>
+            </span>
+            <span class="radio-indicator"></span>
+          </label>
+        </div>
 
-    field.addEventListener("change", () => {
-      field.classList.remove("error");
-    });
-  });
+      </div>
 
-  function togglePassword(id, icon) {
-    const input = document.getElementById(id);
-    input.type = input.type === "password" ? "text" : "password";
-    icon.classList.toggle("fa-eye");
-    icon.classList.toggle("fa-eye-slash");
-  }
+      <h3 class="section-title">Account Security</h3>
 
-  function showError(text) {
-    message.textContent = text;
-    message.className = "message error-message";
-  }
+      <div class="form-group">
+        <label for="password">Create Password</label>
+        <div class="password-wrap">
+          <input type="password" id="password" name="password"
+            placeholder="Minimum 8 characters" minlength="8"
+            autocomplete="new-password" required>
+          <button type="button" class="toggle-password"
+            onclick="togglePassword('password', this)">Show</button>
+        </div>
+      </div>
 
-  form.addEventListener("submit", async function(event) {
-    event.preventDefault();
+      <div class="form-group">
+        <label for="retypePassword">Confirm Password</label>
+        <div class="password-wrap">
+          <input type="password" id="retypePassword"
+            name="retypePassword" placeholder="Confirm your password"
+            autocomplete="new-password" required>
+          <button type="button" class="toggle-password"
+            onclick="togglePassword('retypePassword', this)">Show</button>
+        </div>
+      </div>
 
-    if (!validPlan) {
-      showError("Invalid plan. Please select a plan again.");
-      return;
-    }
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Continue to Payment
+      </button>
 
-    let valid = true;
+      <p class="secure-note">
+        🔒 Your information is submitted securely.
+      </p>
 
-    const fields = form.querySelectorAll("input:not([type=hidden]), select");
+    </form>
 
-    fields.forEach(field => {
-      if (!field.value.trim()) {
-        field.classList.add("error");
-        valid = false;
-      } else {
-        field.classList.remove("error");
-      }
-    });
+    <a href="main.html" class="back-link">← Back to Homepage</a>
 
-    if (!valid) {
-      showError("Please complete all required fields.");
-      return;
-    }
+  </main>
 
-    const email = form.elements.email.value.trim();
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      form.elements.email.classList.add("error");
-      showError("Please enter a valid email address.");
-      return;
-    }
-
-    if (form.elements.password.value.length < 8) {
-      form.elements.password.classList.add("error");
-      showError("Password must contain at least 8 characters.");
-      return;
-    }
-
-    if (form.elements.password.value !== form.elements.retypePassword.value) {
-      form.elements.retypePassword.classList.add("error");
-      showError("Your passwords do not match.");
-      return;
-    }
-
-    if (!iti.isValidNumber()) {
-      phoneInput.classList.add("error");
-      showError("Please enter a valid phone number.");
-      return;
-    }
-
-    const customerData = {
-      firstName: form.elements.firstName.value.trim(),
-      lastName: form.elements.lastName.value.trim(),
-      email: email,
-      country: countrySelect.value,
-      phone: iti.getNumber(),
-      platform: form.elements.platform.value,
-      blockchain: form.elements.blockchain.value,
-      plan: plan
+  <script>
+    const plans = {
+      "50K Plan": 5000,
+      "100K Plan": 8000,
+      "200K Plan": 12000,
+      "500K Plan": 28000,
+      "1M Plan": 50000
     };
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Processing...";
+    const params = new URLSearchParams(window.location.search);
+    const selectedPlan = params.get("plan");
+    const selectedPrice = params.get("price");
 
-    try {
-      const response = await fetch("/api/create-checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          ...customerData,
-          password: form.elements.password.value
-        })
-      });
+    const planName = document.getElementById("planName");
+    const planPrice = document.getElementById("planPrice");
+    const form = document.getElementById("checkoutForm");
+    const errorMessage = document.getElementById("errorMessage");
+    const submitBtn = document.getElementById("submitBtn");
+    const phoneInput = document.getElementById("phone");
 
-      const result = await response.json();
+    const validPlan =
+      Object.prototype.hasOwnProperty.call(plans, selectedPlan) &&
+      Number(selectedPrice) === plans[selectedPlan];
 
-      if (!response.ok || !result.paymentUrl) {
-        throw new Error(result.message || "Unable to create payment session.");
-      }
-
-      const paymentUrl = new URL(result.paymentUrl, window.location.origin);
-
-      if (paymentUrl.origin !== window.location.origin) {
-        throw new Error("Invalid payment redirect.");
-      }
-
-      window.location.href = paymentUrl.href;
-
-    } catch (error) {
-      showError(error.message || "Something went wrong. Please try again.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Continue to Crypto Payment";
+    if (validPlan) {
+      planName.textContent = selectedPlan;
+      planPrice.textContent =
+        "₦" + plans[selectedPlan].toLocaleString("en-NG");
+    } else {
+      planName.textContent = "Invalid plan";
+      planPrice.textContent = "₦0";
+      showError("Invalid plan selection. Please return to the homepage and select a valid plan.");
+      submitBtn.disabled = true;
     }
-  });
-</script>
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.style.display = "block";
+      errorMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+
+    function togglePassword(id, button) {
+      const input = document.getElementById(id);
+
+      if (input.type === "password") {
+        input.type = "text";
+        button.textContent = "Hide";
+      } else {
+        input.type = "password";
+        button.textContent = "Show";
+      }
+    }
+
+    // Accept digits only in Nigerian phone input.
+    phoneInput.addEventListener("input", function () {
+      this.value = this.value.replace(/\D/g, "").slice(0, 11);
+    });
+
+    function getNigerianPhoneNumber() {
+      let number = phoneInput.value.replace(/\D/g, "");
+
+      if (number.startsWith("0")) {
+        number = number.substring(1);
+      }
+
+      if (!/^[789][01]\d{8}$/.test(number)) {
+        return null;
+      }
+
+      return "+234" + number;
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      errorMessage.style.display = "none";
+
+      if (!validPlan) {
+        showError("Please select a valid plan from the homepage.");
+        return;
+      }
+
+      const fields = form.querySelectorAll(
+        "input:not([type=hidden]):not([type=radio]), select"
+      );
+
+      for (const field of fields) {
+        if (!field.value.trim()) {
+          showError("Please complete all required fields.");
+          field.focus();
+          return;
+        }
+      }
+
+      const email = form.elements.email.value.trim();
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        showError("Please enter a valid email address.");
+        form.elements.email.focus();
+        return;
+      }
+
+      const phoneNumber = getNigerianPhoneNumber();
+
+      if (!phoneNumber) {
+        showError("Enter a valid Nigerian phone number, e.g. 08012345678.");
+        phoneInput.focus();
+        return;
+      }
+
+      const password = form.elements.password.value;
+      const confirmPassword = form.elements.retypePassword.value;
+
+      if (password.length < 8) {
+        showError("Password must contain at least 8 characters.");
+        form.elements.password.focus();
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showError("Your passwords do not match.");
+        form.elements.retypePassword.focus();
+        return;
+      }
+
+      const selectedPayment = form.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+
+      if (!selectedPayment) {
+        showError("Please select a payment method.");
+        return;
+      }
+
+      const customerData = {
+        firstName: form.elements.firstName.value.trim(),
+        lastName: form.elements.lastName.value.trim(),
+        email: email,
+        state: form.elements.state.value,
+        phone: phoneNumber,
+        platform: form.elements.platform.value,
+        paymentMethod: selectedPayment.value,
+        plan: selectedPlan,
+        price: plans[selectedPlan]
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Processing...";
+
+      try {
+        const response = await fetch("/api/create-checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(customerData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            result.message || "Unable to create checkout. Please try again."
+          );
+        }
+
+        if (!result.paymentUrl) {
+          throw new Error("Payment link was not returned by the server.");
+        }
+
+        const paymentUrl = new URL(result.paymentUrl, window.location.origin);
+
+        if (paymentUrl.origin !== window.location.origin) {
+          throw new Error("Invalid payment destination.");
+        }
+
+        window.location.href = paymentUrl.href;
+
+      } catch (error) {
+        showError(error.message || "Something went wrong. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Continue to Payment";
+      }
+    });
+  </script>
 
 </body>
-    </html>
+  </html>
   
