@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +7,8 @@
   <title>Checkout - Nairafunded</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css">
-
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root {
@@ -32,32 +27,42 @@
       padding: 0;
     }
 
+    html {
+      width: 100%;
+      min-height: 100%;
+    }
+
     body {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
       background: var(--primary);
       color: var(--white);
       font-family: 'Poppins', Arial, sans-serif;
-      padding: 20px;
+      padding: 14px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      align-items: flex-start;
+      overflow-x: hidden;
     }
 
     .form-container {
-      max-width: 500px;
       width: 100%;
+      max-width: 420px;
       background: #101711;
-      padding: 25px;
-      border-radius: 14px;
+      padding: 19px;
+      margin: auto;
+      border-radius: 13px;
       border: 1px solid rgba(57,255,20,0.2);
-      box-shadow: 0 0 30px rgba(57,255,20,0.08);
+      box-shadow: 0 0 25px rgba(57,255,20,0.07);
     }
 
     .brand {
       text-align: center;
-      margin-bottom: 22px;
-      font-size: 27px;
+      margin-bottom: 17px;
+      font-size: 25px;
       font-weight: 700;
+      line-height: 1.3;
     }
 
     .brand .naira {
@@ -71,29 +76,29 @@
     .brand-subtitle {
       text-align: center;
       color: #999;
-      font-size: 11px;
-      letter-spacing: 2px;
-      margin-top: -18px;
-      margin-bottom: 22px;
+      font-size: 9px;
+      letter-spacing: 1.6px;
+      margin-top: -13px;
+      margin-bottom: 16px;
     }
 
     .plan-summary {
       background: #111f14;
       border: 1px solid var(--dark-green);
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      padding: 12px;
+      border-radius: 9px;
+      margin-bottom: 13px;
       text-align: center;
     }
 
     .plan-summary h3 {
       color: var(--accent);
-      margin-bottom: 8px;
-      font-size: 20px;
+      margin-bottom: 4px;
+      font-size: 17px;
     }
 
     .plan-price {
-      font-size: 27px;
+      font-size: 23px;
       font-weight: bold;
       color: white;
     }
@@ -101,27 +106,30 @@
     .form-label {
       display: block;
       color: #ddd;
-      font-size: 12px;
-      margin-top: 10px;
+      font-size: 11px;
+      margin-top: 7px;
     }
 
     input, select {
+      display: block;
       width: 100%;
-      padding: 13px;
-      margin: 8px 0;
+      min-width: 0;
+      height: 42px;
+      padding: 9px 11px;
+      margin: 5px 0 7px;
       background: var(--input-bg);
       color: white;
       border: 1px solid var(--border);
       border-radius: 7px;
-      font-size: 14px;
+      font-size: 13px;
       font-family: inherit;
       outline: none;
-      transition: .3s;
+      transition: .2s;
     }
 
     input:focus, select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 8px rgba(57,255,20,.15);
+      box-shadow: 0 0 7px rgba(57,255,20,.12);
     }
 
     input::placeholder {
@@ -138,16 +146,17 @@
     }
 
     .input-group input {
-      padding-right: 45px;
+      padding-right: 42px;
     }
 
     .toggle-password {
       position: absolute;
-      right: 14px;
+      right: 13px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
       color: var(--accent);
+      z-index: 2;
     }
 
     input.error, select.error {
@@ -156,37 +165,37 @@
 
     .submit-btn {
       width: 100%;
-      padding: 14px;
-      margin-top: 18px;
+      min-height: 44px;
+      padding: 10px;
+      margin-top: 12px;
       background: linear-gradient(45deg, var(--dark-green), var(--accent));
       color: #000;
       border: none;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
-      transition: .3s;
+      transition: .2s;
     }
 
     .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(57,255,20,.3);
+      box-shadow: 0 0 15px rgba(57,255,20,.25);
     }
 
     .submit-btn:disabled {
       opacity: .6;
       cursor: not-allowed;
-      transform: none;
     }
 
     .iti {
       width: 100%;
-      margin: 8px 0;
+      margin: 5px 0 7px;
     }
 
     .iti input {
       width: 100%;
+      height: 42px;
       margin: 0;
     }
 
@@ -194,6 +203,7 @@
       background: #111a13;
       color: white;
       border: 1px solid var(--dark-green);
+      max-width: min(300px, calc(100vw - 40px));
     }
 
     .iti__country:hover {
@@ -206,10 +216,10 @@
 
     .message {
       display: none;
-      padding: 12px;
-      margin-top: 12px;
+      padding: 10px;
+      margin-top: 10px;
       border-radius: 7px;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .message.error-message {
@@ -220,9 +230,10 @@
 
     .secure-note {
       text-align: center;
-      font-size: 12px;
+      font-size: 10px;
       color: #aaa;
-      margin-top: 15px;
+      margin-top: 11px;
+      line-height: 1.5;
     }
 
     .secure-note i {
@@ -233,9 +244,9 @@
     .back-link {
       display: block;
       text-align: center;
-      margin-top: 18px;
+      margin-top: 12px;
       color: var(--accent);
-      font-size: 13px;
+      font-size: 11px;
       text-decoration: none;
     }
 
@@ -243,9 +254,89 @@
       text-decoration: underline;
     }
 
-    @media(max-width: 768px) {
+    /* Narrow phones */
+    @media (max-width: 380px) {
+      body {
+        padding: 9px;
+      }
+
       .form-container {
-        padding: 18px;
+        padding: 14px;
+        border-radius: 11px;
+      }
+
+      .brand {
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      .plan-summary {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .plan-price {
+        font-size: 21px;
+      }
+
+      input, select, .iti input {
+        height: 40px;
+        font-size: 12px;
+      }
+
+      .form-label {
+        font-size: 10px;
+      }
+    }
+
+    /* Short screens */
+    @media (max-height: 700px) {
+      body {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .form-container {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .brand {
+        font-size: 22px;
+        margin-bottom: 13px;
+      }
+
+      .brand-subtitle {
+        margin-bottom: 12px;
+      }
+
+      .plan-summary {
+        padding: 9px;
+        margin-bottom: 9px;
+      }
+
+      .form-label {
+        margin-top: 5px;
+      }
+
+      input, select, .iti input {
+        height: 39px;
+        margin-top: 4px;
+        margin-bottom: 5px;
+      }
+
+      .submit-btn {
+        margin-top: 9px;
+      }
+
+      .secure-note {
+        margin-top: 8px;
+      }
+
+      .back-link {
+        margin-top: 9px;
       }
     }
   </style>
@@ -269,19 +360,13 @@
   <form id="checkoutForm" novalidate>
 
     <label class="form-label">First Name</label>
-    <input type="text" name="firstName"
-      placeholder="Enter first name"
-      autocomplete="given-name" required>
+    <input type="text" name="firstName" placeholder="Enter first name" autocomplete="given-name" required>
 
     <label class="form-label">Last Name</label>
-    <input type="text" name="lastName"
-      placeholder="Enter last name"
-      autocomplete="family-name" required>
+    <input type="text" name="lastName" placeholder="Enter last name" autocomplete="family-name" required>
 
     <label class="form-label">Email Address</label>
-    <input type="email" name="email"
-      placeholder="Enter email address"
-      autocomplete="email" required>
+    <input type="email" name="email" placeholder="Enter email address" autocomplete="email" required>
 
     <label class="form-label">Country</label>
     <select id="country" name="country" required>
@@ -301,10 +386,7 @@
     </select>
 
     <label class="form-label">Phone Number</label>
-    <input id="phone" type="tel"
-      name="phone"
-      placeholder="Enter phone number"
-      autocomplete="tel" required>
+    <input id="phone" type="tel" name="phone" placeholder="Enter phone number" autocomplete="tel" required>
 
     <label class="form-label">Trading Platform</label>
     <select id="platform" name="platform" required>
@@ -324,24 +406,18 @@
 
     <label class="form-label">Create Password</label>
     <div class="input-group">
-      <input type="password" name="password"
-        id="password"
+      <input type="password" name="password" id="password"
         placeholder="Create password (minimum 8 characters)"
-        minlength="8"
-        autocomplete="new-password" required>
-
+        minlength="8" autocomplete="new-password" required>
       <i class="fa-solid fa-eye toggle-password"
         onclick="togglePassword('password', this)"></i>
     </div>
 
     <label class="form-label">Confirm Password</label>
     <div class="input-group">
-      <input type="password" name="retypePassword"
-        id="retypePassword"
+      <input type="password" name="retypePassword" id="retypePassword"
         placeholder="Confirm your password"
-        minlength="8"
-        autocomplete="new-password" required>
-
+        minlength="8" autocomplete="new-password" required>
       <i class="fa-solid fa-eye toggle-password"
         onclick="togglePassword('retypePassword', this)"></i>
     </div>
@@ -367,9 +443,6 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
 <script>
-  // Available plans and display prices.
-  // Your backend must independently validate these prices.
-
   const plans = {
     "50K Plan": 5000,
     "100K Plan": 8000,
@@ -395,11 +468,9 @@
     submitBtn.disabled = true;
   } else {
     planTitle.textContent = plan;
-    planPrice.textContent =
-      "₦" + plans[plan].toLocaleString("en-NG");
+    planPrice.textContent = "₦" + plans[plan].toLocaleString("en-NG");
   }
 
-  // Initialize phone number input.
   const phoneInput = document.getElementById("phone");
   const countrySelect = document.getElementById("country");
 
@@ -408,18 +479,15 @@
     initialCountry: "ng",
     nationalMode: false,
     allowDropdown: true,
-    utilsScript:
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
   });
 
-  // Synchronize selected country.
   countrySelect.addEventListener("change", function() {
     if (this.value) {
       iti.setCountry(this.value.toLowerCase());
     }
   });
 
-  // Clear errors when fields are edited.
   form.querySelectorAll("input, select").forEach(field => {
     field.addEventListener("input", () => {
       field.classList.remove("error");
@@ -432,24 +500,18 @@
     });
   });
 
-  // Password visibility.
   function togglePassword(id, icon) {
     const input = document.getElementById(id);
-
-    input.type =
-      input.type === "password" ? "text" : "password";
-
+    input.type = input.type === "password" ? "text" : "password";
     icon.classList.toggle("fa-eye");
     icon.classList.toggle("fa-eye-slash");
   }
 
-  // Display error message.
   function showError(text) {
     message.textContent = text;
     message.className = "message error-message";
   }
 
-  // Submit checkout form.
   form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -460,9 +522,7 @@
 
     let valid = true;
 
-    const fields = form.querySelectorAll(
-      "input:not([type=hidden]), select"
-    );
+    const fields = form.querySelectorAll("input:not([type=hidden]), select");
 
     fields.forEach(field => {
       if (!field.value.trim()) {
@@ -492,10 +552,7 @@
       return;
     }
 
-    if (
-      form.elements.password.value !==
-      form.elements.retypePassword.value
-    ) {
+    if (form.elements.password.value !== form.elements.retypePassword.value) {
       form.elements.retypePassword.classList.add("error");
       showError("Your passwords do not match.");
       return;
@@ -536,15 +593,10 @@
       const result = await response.json();
 
       if (!response.ok || !result.paymentUrl) {
-        throw new Error(
-          result.message || "Unable to create payment session."
-        );
+        throw new Error(result.message || "Unable to create payment session.");
       }
 
-      const paymentUrl = new URL(
-        result.paymentUrl,
-        window.location.origin
-      );
+      const paymentUrl = new URL(result.paymentUrl, window.location.origin);
 
       if (paymentUrl.origin !== window.location.origin) {
         throw new Error("Invalid payment redirect.");
@@ -553,10 +605,7 @@
       window.location.href = paymentUrl.href;
 
     } catch (error) {
-      showError(
-        error.message || "Something went wrong. Please try again."
-      );
-
+      showError(error.message || "Something went wrong. Please try again.");
       submitBtn.disabled = false;
       submitBtn.textContent = "Continue to Crypto Payment";
     }
