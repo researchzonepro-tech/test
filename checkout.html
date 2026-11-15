@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -839,4 +838,203 @@
 
       paymentOptions.forEach(item => {
         item.classList.remove("selected");
-    
+        item.setAttribute("aria-selected", "false");
+      });
+
+      this.classList.add("selected");
+      this.setAttribute("aria-selected", "true");
+
+      paymentTrigger.classList.remove("error");
+      closePaymentDropdown();
+      message.className = "message";
+      message.textContent = "";
+    });
+  });
+
+  // Close dropdown when clicking outside.
+  document.addEventListener("click", function(event) {
+    if (!paymentDropdown.contains(event.target)) {
+      closePaymentDropdown();
+    }
+  });
+
+  // Allow Escape key to close dropdown.
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closePaymentDropdown();
+    }
+  });
+  // Allow only numbers in the phone field.
+  phoneInput.addEventListener("input", function() {
+    this.value = this.value.replace(/\D/g, "").slice(0, 11);
+    phoneGroup.classList.remove("error");
+  });
+
+  // Clear field errors when edited.
+  form.querySelectorAll("input, select").forEach(field => {
+    field.addEventListener("input", () => {
+      field.classList.remove("error");
+      message.className = "message";
+      message.textContent = "";
+    });
+
+    field.addEventListener("change", () => {field.classList.remove("error");
+      message.className = "message";
+      message.textContent = "";
+    });
+  });
+
+  // Password visibility.
+  function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+
+    input.type = input.type === "password" ? "text" : "password";
+
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+  }
+
+  // Display error.
+  function showError(text) {
+    message.textContent = text;
+    message.className = "message error-message";
+  }
+
+  // Validate Nigerian phone number and convert to +234 format.
+  function getNigerianPhoneNumber() {
+    let number = phoneInput.value.replace(/\D/g, "");
+
+    if (number.startsWith("0")) {
+      number = number.substring(1);
+    }
+
+    const validNigerianNumber = /^[789][01]\d{8}$/.test(number);
+
+    if (!validNigerianNumber) {
+      return null;
+    }
+
+    return "+234" + number;
+  }
+
+  // Submit checkout form.
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    message.className = "message";
+    message.textContent = "";
+
+    if (!validPlan) {
+      showError("Invalid plan. Please select a plan again.");
+      return;
+    }
+
+    let valid = true;
+
+    const fields = form.querySelectorAll(
+      "input:not([type=hidden]), select"
+    );
+
+    fields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        valid = false;
+      } else {field.classList.remove("error");
+      }
+    });
+
+    if (!valid) {
+      showError("Please complete all required fields.");
+      return;
+    }
+
+    const email = form.elements.email.value.trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      form.elements.email.classList.add("error");
+      showError("Please enter a valid email address.");
+      return;
+  }
+    const phoneNumber = getNigerianPhoneNumber();
+
+    if (!phoneNumber) {
+      phoneGroup.classList.add("error");
+      showError("Please enter a valid Nigerian mobile number, e.g. 08012345678.");
+      return;
+    }
+
+    if (!paymentInput.value) {
+      paymentTrigger.classList.add("error");
+      showError("Please select a payment method.");
+      paymentTrigger.focus();
+      return;
+    }
+
+    if (form.elements.password.value.length < 8) {form.elements.password.classList.add("error");
+      showError("Password must contain at least 8 characters.");
+      return;
+    }
+
+    if (
+      form.elements.password.value !==
+      form.elements.retypePassword.value
+    ) {
+      form.elements.retypePassword.classList.add("error");
+      showError("Your passwords do not match.");
+      return;
+  }
+    const customerData = {
+      firstName: form.elements.firstName.value.trim(),
+      lastName: form.elements.lastName.value.trim(),
+      email: email,
+      state: form.elements.state.value,
+      phone: phoneNumber,
+      platform: form.elements.platform.value,
+      paymentMethod: paymentInput.value,
+      plan: plan,
+      price: plans[plan],
+      password: form.elements.password.value
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing...";
+    try {
+      const response = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(customerData)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.paymentUrl) {
+        throw new Error(
+          result.message || "Unable to create payment session."
+        );
+      }
+
+      const paymentUrl = new URL(
+        result.paymentUrl,
+        window.location.origin
+      );
+      if (paymentUrl.origin !== window.location.origin) {
+        throw new Error("Invalid payment redirect.");
+      }
+
+      window.location.href = paymentUrl.href;
+
+    } catch (error) {
+      showError(
+        error.message || "Something went wrong. Please try again."
+      );
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Continue to Payment";
+    }
+  });
+</script>
+
+</body>
+</html>
+  
