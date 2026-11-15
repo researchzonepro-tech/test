@@ -1,17 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout - BlackArrow</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Nairafunded</title>
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #121212;
+      background: #121212;
       color: white;
-      font-family: 'Poppins', sans-serif;
+      font-family: Poppins, Arial, sans-serif;
       padding: 20px;
       margin: 0;
       display: flex;
@@ -19,14 +28,16 @@
       align-items: center;
       min-height: 100vh;
     }
+
     .form-container {
       max-width: 500px;
+      width: 100%;
       background: #1e1e1e;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      width: 100%;
+      box-shadow: 0 0 20px rgba(0,0,0,.5);
     }
+
     input, select, .submit-btn {
       width: 100%;
       padding: 10px;
@@ -37,206 +48,385 @@
       border-radius: 6px;
       font-size: 14px;
     }
+
     .input-group {
       position: relative;
     }
+
+    .input-group input {
+      padding-right: 42px;
+    }
+
     .toggle-password {
       position: absolute;
-      right: 10px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
       color: #bbb;
-      font-size: 16px;
     }
+
     input.error, select.error {
       border-color: #ff4b4b !important;
     }
+
     .submit-btn {
       background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
       border: none;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.4s;
       margin-top: 15px;
     }
-    .submit-btn:hover {
-      background: linear-gradient(45deg, #ff4b2b, #ff416c);
+
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
     }
+
     .plan-summary {
       background: #2c2c2c;
       border: 1px solid #444;
-      padding: 12px;
+      padding: 15px;
       border-radius: 8px;
       margin-bottom: 15px;
       text-align: center;
     }
+
     .plan-summary h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
       color: #ffdd57;
+      margin: 0 0 8px;
     }
+
+    .plan-price {
+      font-size: 25px;
+      font-weight: bold;
+      color: #ff4b2b;
+    }
+
     .iti {
       width: 100%;
     }
+
     .iti input {
       width: 100%;
-      background: #2c2c2c;
-      color: white;
-      border: 1px solid #444;
-      border-radius: 6px;
-      padding: 10px;
-      font-size: 14px;
     }
-    @media (max-width: 768px) {
+
+    .message {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .message.error-message {
+      display: block;
+      background: #4a2020;
+      color: #ffbaba;
+    }
+
+    @media(max-width: 768px) {
       .form-container {
         padding: 15px;
-        width: 100%;
-      }
-      input, select, .submit-btn {
-        padding: 8px;
       }
     }
   </style>
 </head>
-<body>
-  <div class="form-container">
-    <div class="plan-summary">
-      <h3 id="planTitle">Selected Plan:</h3>
-      <p id="planPrice">Price:</p>
-    </div>
 
-    <form id="checkoutForm" novalidate>
-      <input type="text" name="firstName" placeholder="First Name" />
-      <input type="text" name="lastName" placeholder="Last Name" />
-      <input type="email" name="email" placeholder="Email Address" />
-      <select id="country" name="country">
-        <option value="">Select Country</option>
-        <option value="US">United States</option>
-        <option value="GB">United Kingdom</option>
-        <option value="CA">Canada</option>
-        <option value="NG">Nigeria</option>
-        <option value="IN">India</option>
-        <option value="DE">Germany</option>
-        <option value="FR">France</option>
-        <option value="ZA">South Africa</option>
-        <option value="BR">Brazil</option>
-        <option value="PH">Philippines</option>
-        <option value="PK">Pakistan</option>
-        <option value="AU">Australia</option>
-      </select>
-      <input id="phone" type="tel" name="phone" placeholder="Phone Number" maxlength="10" />
-      <select id="platform" name="platform">
-        <option value="">Select Platform</option>
-        <option value="metatrader5">MetaTrader 5</option>
-        <option value="metatrader4">MetaTrader 4</option>
-        <option value="marchtrader">MarchTrader</option>
-      </select>
-      <select id="blockchainSelect" name="blockchain">
-        <option value="">Select Network</option>
-        <option value="bsc">BSC (BEP20)</option>
-        <option value="trc20">TRC20</option>
-        <option value="ethereum">Ethereum (ERC20)</option>
-      </select>
-      <div class="input-group">
-        <input type="password" name="password" id="password" placeholder="Create Password" minlength="8" />
-        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
-      </div>
-      <div class="input-group">
-        <input type="password" name="retypePassword" id="retypePassword" placeholder="Retype Password" minlength="8" />
-        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('retypePassword', this)"></i>
-      </div>
-      <button type="submit" class="submit-btn">Pay with Crypto</button>
-    </form>
+<body>
+
+<div class="form-container">
+
+  <div class="plan-summary">
+    <h3 id="planTitle">Selected Plan</h3>
+    <p class="plan-price" id="planPrice">Loading price...</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
-  <script>
-    // Extract query parameters
-    const params = new URLSearchParams(window.location.search);
-    const plan = params.get('plan') || 'Unknown';
-    const price = params.get('price') || '0';
+  <form id="checkoutForm" novalidate>
 
-    // Display plan data
-    document.getElementById("price").textContent =
-  "₦" + Number(price).toLocaleString("en-NG");
+    <input type="text" name="firstName"
+      placeholder="First Name" required>
 
-    // Initialize international phone input
-    const phoneInput = document.querySelector("#phone");
-    const countrySelect = document.getElementById("country");
-    const iti = window.intlTelInput(phoneInput, {
-      separateDialCode: true,
-      initialCountry: "us",
-      allowDropdown: false,
-      autoHideDialCode: false,
-      nationalMode: false,
-      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+    <input type="text" name="lastName"
+      placeholder="Last Name" required>
+
+    <input type="email" name="email"
+      placeholder="Email Address" required>
+
+    <select id="country" name="country" required>
+      <option value="">Select Country</option>
+      <option value="US">United States</option>
+      <option value="GB">United Kingdom</option>
+      <option value="CA">Canada</option>
+      <option value="NG">Nigeria</option>
+      <option value="IN">India</option>
+      <option value="DE">Germany</option>
+      <option value="FR">France</option>
+      <option value="ZA">South Africa</option>
+      <option value="BR">Brazil</option>
+      <option value="PH">Philippines</option>
+      <option value="PK">Pakistan</option>
+      <option value="AU">Australia</option>
+    </select>
+
+    <input id="phone" type="tel"
+      name="phone" placeholder="Phone Number" required>
+
+    <select id="platform" name="platform" required>
+      <option value="">Select Platform</option>
+      <option value="metatrader5">MetaTrader 5</option>
+      <option value="metatrader4">MetaTrader 4</option>
+      <option value="marchtrader">MarchTrader</option>
+    </select>
+
+    <select id="blockchainSelect" name="blockchain" required>
+      <option value="">Select Network</option>
+      <option value="bsc">BSC (BEP20)</option>
+      <option value="trc20">TRC20</option>
+      <option value="ethereum">Ethereum (ERC20)</option>
+    </select>
+
+    <div class="input-group">
+      <input type="password" name="password"
+        id="password" placeholder="Create Password"
+        minlength="8" required>
+
+      <i class="fa-solid fa-eye toggle-password"
+        onclick="togglePassword('password', this)"></i>
+    </div>
+
+    <div class="input-group">
+      <input type="password" name="retypePassword"
+        id="retypePassword" placeholder="Retype Password"
+        minlength="8" required>
+
+      <i class="fa-solid fa-eye toggle-password"
+        onclick="togglePassword('retypePassword', this)"></i>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Continue to Crypto Payment
+    </button>
+
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+<script>
+  // Authoritative display prices for the frontend.
+  // The server must independently enforce these prices.
+
+  const plans = {
+    "50K Plan": 5000,
+    "100K Plan": 8000,
+    "200K Plan": 12000,
+    "500K Plan": 28000,
+    "1M Plan": 50000
+  };
+
+  // Read selected plan
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get("plan");
+
+  const planTitle = document.getElementById("planTitle");
+  const planPrice = document.getElementById("planPrice");
+  const form = document.getElementById("checkoutForm");
+  const message = document.getElementById("message");
+  const submitBtn = document.getElementById("submitBtn");
+
+  // Reject unknown plans
+  if (!Object.prototype.hasOwnProperty.call(plans, plan)) {
+    planTitle.textContent = "Invalid Plan";
+    planPrice.textContent = "Please return and select a valid plan.";
+    submitBtn.disabled = true;
+  } else {
+    const price = plans[plan];
+
+    planTitle.textContent = plan;
+    planPrice.textContent =
+      "₦" + price.toLocaleString("en-NG");
+  }
+
+  // Initialize phone input
+  const phoneInput = document.getElementById("phone");
+  const countrySelect = document.getElementById("country");
+
+  const iti = window.intlTelInput(phoneInput, {
+    separateDialCode: true,
+    initialCountry: "ng",
+    nationalMode: false,
+    allowDropdown: true,
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+  });
+
+  // Synchronize country selection
+  countrySelect.addEventListener("change", function() {
+    if (this.value) {
+      iti.setCountry(this.value.toLowerCase());
+    }
+  });
+
+  // Clear field error when edited
+  form.querySelectorAll("input, select").forEach(field => {
+    field.addEventListener("input", () => {
+      field.classList.remove("error");
+      message.className = "message";
+      message.textContent = "";
     });
 
-    // Sync country select with phone input
-    countrySelect.addEventListener("change", function () {
-      const selectedCountry = this.value.toLowerCase();
-      if (selectedCountry) {
-        iti.setCountry(selectedCountry);
-      }
+    field.addEventListener("change", () => {
+      field.classList.remove("error");
     });
+  });
 
-    // Toggle password visibility
-    function togglePassword(id, icon) {
-      const input = document.getElementById(id);
-      const isPassword = input.type === "password";
-      input.type = isPassword ? "text" : "password";
-      icon.classList.toggle("fa-eye");
-      icon.classList.toggle("fa-eye-slash");
+  // Password visibility
+  function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+
+    input.type =
+      input.type === "password" ? "text" : "password";
+
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+  }
+
+  function showError(text) {
+    message.textContent = text;
+    message.className = "message error-message";
+  }
+
+  // Form validation
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    if (!Object.prototype.hasOwnProperty.call(plans, plan)) {
+      showError("Invalid plan. Please select a plan again.");
+      return;
     }
 
-    // Handle form submission
-    document.getElementById("checkoutForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      const form = event.target;
-      const fields = form.querySelectorAll("input, select");
-      let allValid = true;
+    let valid = true;
 
-      fields.forEach(field => {
-        if (!field.value.trim()) {
-          field.classList.add("error");
-          allValid = false;
-        } else {
-          field.classList.remove("error");
-        }
+    const fields = form.querySelectorAll(
+      "input:not([type=hidden]), select"
+    );
+
+    fields.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add("error");
+        valid = false;
+      } else {
+        field.classList.remove("error");
+      }
+    });
+
+    const email = form.elements.email.value.trim();
+    const emailValid =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!emailValid) {
+      form.elements.email.classList.add("error");
+      showError("Please enter a valid email address.");
+      return;
+    }
+
+    if (form.elements.password.value.length < 8) {
+      form.elements.password.classList.add("error");
+      showError("Password must contain at least 8 characters.");
+      return;
+    }
+
+    if (
+      form.elements.password.value !==
+      form.elements.retypePassword.value
+    ) {
+      form.elements.retypePassword.classList.add("error");
+      showError("Your passwords do not match.");
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
+      phoneInput.classList.add("error");
+      showError("Please enter a valid phone number.");
+      return;
+    }
+
+    if (!valid) {
+      showError("Please complete all required fields.");
+      return;
+    }
+
+    // Get verified plan price from local plan list.
+    const price = plans[plan];
+
+    // Do not store passwords or payment credentials
+    // in localStorage or URL parameters.
+
+    const customerData = {
+      firstName: form.elements.firstName.value.trim(),
+      lastName: form.elements.lastName.value.trim(),
+      email: email,
+      country: countrySelect.value,
+      phone: iti.getNumber(),
+      platform: form.elements.platform.value,
+      blockchain: form.elements.blockchain.value,
+      plan: plan,
+      price: price
+    };
+
+    // A secure backend must create the payment session,
+    // verify the plan price, and securely handle the password.
+    // Replace this endpoint with your actual backend route.
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing...";
+
+    try {
+      const response = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...customerData,
+          password: form.elements.password.value
+        })
       });
 
-      if (form.password.value.length < 8) {
-        form.password.classList.add("error");
-        allValid = false;
+      const result = await response.json();
+
+      if (!response.ok || !result.paymentUrl) {
+        throw new Error(
+          result.message || "Unable to create payment session."
+        );
       }
 
-      if (!allValid) return;
+      // Only redirect to a payment URL returned by your server.
+      const paymentUrl = new URL(
+        result.paymentUrl,
+        window.location.origin
+      );
 
-      // Get blockchain address
-      const selectedBlockchain = form.blockchain.value;
-      let walletAddress = "";
-      switch (selectedBlockchain) {
-        case "bsc":
-          walletAddress = "0xbe04527855bb2b1245a398dfec3644e4e483719b";
-          break;
-        case "trc20":
-          walletAddress = "TN87Kqjx83vtvQAdfxpjw3jMK1uPXAd94R";
-          break;
-        case "ethereum":
-          walletAddress = "0xbe04527855bb2b1245a398dfec3644e4e483719b";
-          break;
+      if (paymentUrl.origin !== window.location.origin) {
+        throw new Error("Invalid payment redirect.");
       }
 
-      // Store for later use
-      localStorage.setItem("selectedBlockchain", selectedBlockchain);
-      localStorage.setItem("selectedPrice", price);
-      localStorage.setItem("walletAddress", walletAddress);
+      window.location.href = paymentUrl.href;
 
-      // Redirect to payment page
-      window.location.href = `crypto-payment.html?plan=${encodeURIComponent(plan)}&price=${encodeURIComponent(price)}&blockchain=${encodeURIComponent(selectedBlockchain)}&wallet=${encodeURIComponent(walletAddress)}`;
-    });
-  </script>
+    } catch (error) {
+      showError(
+        error.message || "Something went wrong. Please try again."
+      );
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Continue to Crypto Payment";
+    }
+  });
+</script>
+
 </body>
-</html>
+    </html>
+    
